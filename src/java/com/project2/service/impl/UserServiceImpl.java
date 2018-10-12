@@ -14,6 +14,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    @Override
+    public User queryUserByName(String name) {
+        return userDao.queryUserByName(name);
+    }
+
     public void register(User user) {
         User user1 = userDao.queryUserByName(user.getName());
         if (user1==null){
@@ -21,6 +26,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public void login(User user) {
+    public boolean login(User user) {
+        return userDao.queryUser(user);
     }
 }

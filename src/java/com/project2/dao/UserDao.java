@@ -9,4 +9,5 @@ public interface UserDao {
     void insertUser(User user);
     void updateUser(User user);
     User queryUserByName(String name);
+    boolean queryUser(User user);
 }

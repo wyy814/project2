@@ -13,4 +13,8 @@
     <select id="queryUserByName" resultType="User">
         SELECT * FROM users WHERE name=#{name}
     </select>
+
+    <select id="queryUser" resultType="boolean">
+        SELECT * FROM users WHERE name=#{name} AND password=#{password}
+    </select>
 </mapper>
