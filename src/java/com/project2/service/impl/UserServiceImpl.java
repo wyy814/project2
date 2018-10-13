@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public boolean login(User user) {
-        return userDao.queryUser(user);
+        User user1 = userDao.queryUser(user);
+        return user1!=null;
     }
 }

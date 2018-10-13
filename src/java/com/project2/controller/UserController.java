@@ -31,14 +31,14 @@ public class UserController {
     @RequestMapping("register")
     public String register(User user){
         userService.register(user);
-        return "user/addUser";
+        return "user/base";
     }
 
     @RequestMapping("login")
     public String login(User user){
         boolean login = userService.login(user);
         if (login){
-            return "user/addUser";
+            return "user/base";
         }
         return "forward:/login.jsp";
     }
