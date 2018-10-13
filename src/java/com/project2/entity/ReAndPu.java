@@ -7,11 +7,11 @@ import java.sql.Date;
  */
 public class ReAndPu {
     private Integer id;
-    private String eName;
-    private String why;
-    private Date time;
-    private Integer num;
-    private String type;
+    private String eName;//奖惩人员
+    private String why;//奖惩缘由
+    private Date time;//奖惩时间
+    private Integer num;//奖金金额
+    private String type;//奖惩类型
 
     public ReAndPu() {
     }

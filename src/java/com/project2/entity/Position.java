@@ -6,27 +6,17 @@ import java.sql.Timestamp;
  * Created by Administrator on 2018/10/12 0012.
  */
 public class Position {
-    private Integer id;
     private String name;
-    private Integer dId;
-    private Timestamp pTime;
+    private Integer dName;//部门名称
+    private Timestamp pTime;//职位创建时间
 
     public Position() {
     }
 
-    public Position(Integer id, String name, Integer dId, Timestamp pTime) {
-        this.id = id;
+    public Position(String name, Integer dName, Timestamp pTime) {
         this.name = name;
-        this.dId = dId;
+        this.dName = dName;
         this.pTime = pTime;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -37,12 +27,12 @@ public class Position {
         this.name = name;
     }
 
-    public Integer getdId() {
-        return dId;
+    public Integer getdName() {
+        return dName;
     }
 
-    public void setdId(Integer dId) {
-        this.dId = dId;
+    public void setdName(Integer dName) {
+        this.dName = dName;
     }
 
     public Timestamp getpTime() {
@@ -56,9 +46,8 @@ public class Position {
     @Override
     public String toString() {
         return "Position{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", dId=" + dId +
+                "name='" + name + '\'' +
+                ", dName=" + dName +
                 ", pTime=" + pTime +
                 '}';
     }

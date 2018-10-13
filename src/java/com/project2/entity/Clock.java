@@ -6,6 +6,7 @@ import java.sql.Timestamp;
  * Created by Administrator on 2018/10/12 0012.
  */
 public class Clock {
+    private Integer id;
     private Timestamp uTime;//上班时间
     private Timestamp dTime;//下班时间
     private String ynLate;//是否迟到
@@ -14,11 +15,20 @@ public class Clock {
     public Clock() {
     }
 
-    public Clock(Timestamp uTime, Timestamp dTime, String ynLate, String ynLeave) {
+    public Clock(Integer id, Timestamp uTime, Timestamp dTime, String ynLate, String ynLeave) {
+        this.id = id;
         this.uTime = uTime;
         this.dTime = dTime;
         this.ynLate = ynLate;
         this.ynLeave = ynLeave;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Timestamp getuTime() {
@@ -56,7 +66,8 @@ public class Clock {
     @Override
     public String toString() {
         return "Clock{" +
-                "uTime=" + uTime +
+                "id=" + id +
+                ", uTime=" + uTime +
                 ", dTime=" + dTime +
                 ", ynLate='" + ynLate + '\'' +
                 ", ynLeave='" + ynLeave + '\'' +

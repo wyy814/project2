@@ -6,25 +6,15 @@ import java.sql.Timestamp;
  * Created by Administrator on 2018/10/12 0012.
  */
 public class Dept {
-    private Integer id;
     private String name;
     private Timestamp dTime;//部门创建时间
 
     public Dept() {
     }
 
-    public Dept(Integer id, String name, Timestamp dTime) {
-        this.id = id;
+    public Dept(String name, Timestamp dTime) {
         this.name = name;
         this.dTime = dTime;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -46,7 +36,6 @@ public class Dept {
     @Override
     public String toString() {
         return "Dept{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", dTime=" + dTime +
                 '}';

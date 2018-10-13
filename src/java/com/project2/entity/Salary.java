@@ -6,6 +6,7 @@ import java.sql.Date;
  * Created by Administrator on 2018/10/12 0012.
  */
 public class Salary {
+    private Integer id;
     private Integer bSalary;//基本工资
     private Integer pSalary;//绩效工资
     private Integer rpSalary;//奖惩工资
@@ -16,13 +17,22 @@ public class Salary {
     public Salary() {
     }
 
-    public Salary(Integer bSalary, Integer pSalary, Integer rpSalary, Integer sSalary, Date time, String rec) {
+    public Salary(Integer id, Integer bSalary, Integer pSalary, Integer rpSalary, Integer sSalary, Date time, String rec) {
+        this.id = id;
         this.bSalary = bSalary;
         this.pSalary = pSalary;
         this.rpSalary = rpSalary;
         this.sSalary = sSalary;
         this.time = time;
         this.rec = rec;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getbSalary() {
@@ -76,7 +86,8 @@ public class Salary {
     @Override
     public String toString() {
         return "Salary{" +
-                "bSalary=" + bSalary +
+                "id=" + id +
+                ", bSalary=" + bSalary +
                 ", pSalary=" + pSalary +
                 ", rpSalary=" + rpSalary +
                 ", sSalary=" + sSalary +

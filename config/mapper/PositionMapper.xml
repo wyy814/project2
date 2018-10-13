@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project2.dao.PositionDao">
+
+    <insert id="insertPosition" parameterType="Position">
+        INSERT INTO positions VALUES (#{name},#{dName},#{pTime})
+    </insert>
+
+    <delete id="deletePosition">
+        DELETE FROM positions WHERE name=#{name}
+    </delete>
+
+    <update id="updatePosition" parameterType="Position">
+        UPDATE positions SET name=#{name},d_name=#{dName} WHERE name=#{name}
+    </update>
+
+    <select id="queryPositions" resultType="Position">
+        SELECT * FROM positions WHERE d_name=#{dName}
+    </select>
+</mapper>
