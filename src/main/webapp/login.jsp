@@ -9,17 +9,25 @@
 <html>
 <head>
     <style>
+        body{
+            background-image: url(/images/1.jpg);
+        }
         #one{
-            background-image: url(images/1.jpg);
             border: 1px;
             width: 350px;
             height: 250px;
-            margin-top: 120px;
+            margin-top: 80px;
             margin-left: 400px;
             padding-top: 80px;
             padding-left: 120px;
             padding-right: 30px;
             padding-bottom: 100px;
+        }
+        #s1{
+            color: red;
+        }
+        #s2{
+            color: red;
         }
         #s3{
             color: red;
@@ -32,35 +40,42 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#login").click(function () {
+            $("#name").blur(function () {
+                var name=$(this).val();
+                var url="/user/name";
+                var args={"name":name};
+                $.post(url,args,function (data) {
+                    if (data=="no") {
+                        $("#s1").text("该用户不存在");
+                    }
+                    if (data=="yes") {
+                        $("#s1").text("");
+                    }
+                })
+            });
+            $("form").submit(function () {
                 var name=$("#name").val();
-                if(name==""){
-                    alert("用户名不能为空");
-                    return false;
-                }else {
-                    var url="/user/name";
-                    var args={"name":name};
-                    $.post(url,args,function (data) {
-                        if(data=="no"){
-                            $("#s1").test("该用户不存在");
-                            return false;
-                        }
-                    });
-                }
                 var password=$("#password").val();
-                if(password==""){
-                    alert("密码不能为空");
-                }
-            })
+                var url="/user/login";
+                var args={"name":name,"password":password};
+                $.post(url,args,function (data) {
+                    if(data=="false"){
+                        $("#s2").text("密码错误");
+                    }else {
+                        location.href="/user/login2";
+                    }
+                });
+                return false;
+            });
         })
     </script>
 </head>
 <body>
     <div id="one">
         <h1>登录</h1>
-        <form action="user/login" method="post">
+        <form>
             <input id="name" type="text" name="name" placeholder="用户名"/><span id="s1"></span><br><br>
-            <input id="password" type="password" name="password" placeholder="密码"/><br><br>
+            <input id="password" type="password" name="password" placeholder="密码"/><span id="s2"></span><br><br>
             <input id="login" type="submit" value="登录"/><br><br>
             <input type="button" value="取消" src="login.jsp"/>
         </form>

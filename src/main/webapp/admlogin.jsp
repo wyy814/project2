@@ -9,51 +9,50 @@
 <html>
 <head>
     <style>
+        body{
+            background-image: url(/images/2.png);
+        }
         #one{
-            background-image: url(images/1.jpg);
             border: 1px;
             width: 350px;
             height: 250px;
-            margin-top: 120px;
+            margin-top: 80px;
             margin-left: 400px;
             padding-top: 80px;
             padding-left: 120px;
             padding-right: 30px;
             padding-bottom: 100px;
         }
-        #s3{
+        #s1{
             color: red;
-        }
-        #a{
-            color: blue;
-            size: 20px;
         }
     </style>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#login").click(function () {
+            $("form").submit(function () {
                 var name=$("#name").val();
-                if(name==""){
-                    alert("用户名不能为空");
-                    return false;
-                }else {
-                    var password=$("#password").val();
-                    if(password==""){
-                        alert("密码不能为空");
-                        return false;
+                var password=$("#password").val();
+                var url="/adm/login";
+                var args={"name":name,"password":password};
+                $.post(url,args,function (data) {
+                    if(data=="false"){
+                        $("#s1").text("用户名或密码错误");
+                    }else {
+                        location.href="/adm/login2";
                     }
-                }
-            })
+                });
+                return false;
+            });
         })
     </script>
 </head>
 <body>
     <div id="one">
         <h1>登录</h1>
-        <form action="adm/login" method="post">
-            <input id="name" type="text" name="name" placeholder="用户名"/><span id="s1"></span><br><br>
-            <input id="password" type="password" name="password" placeholder="密码"/><br><br>
+        <form>
+            <input id="name" type="text" name="name" placeholder="用户名"/><br><br>
+            <input id="password" type="password" name="password" placeholder="密码"/><span id="s1"></span><br><br>
             <input id="login" type="submit" value="登录"/><br><br>
             <input type="button" value="取消" src="admlogin.jsp"/>
         </form>
