@@ -4,8 +4,8 @@
 
     <insert id="insertResume" parameterType="UserResume">
         INSERT INTO
-            user_resumes (name,sex,age,edu_bg,phone,email,position,political,on_job,work_exp,salary,hobby)
-        VALUES (#{name},#{sex},#{age},#{eduBg},#{phone},#{email},#{position},#{political},#{onJob},#{workExp},#{salary},#{hobby})
+            user_resumes (name,sex,age,edu_bg,phone,email,dept,position,political,on_job,work_exp,salary,hobby,u_name)
+        VALUES (#{name},#{sex},#{age},#{eduBg},#{phone},#{email},#{dept},#{position},#{political},#{onJob},#{workExp},#{salary},#{hobby},#{uName})
     </insert>
 
     <update id="updateResume" parameterType="UserResume">
@@ -19,5 +19,9 @@
 
     <select id="queryResume" resultType="UserResume">
         SELECT * FROM user_resumes WHERE id=#{id}
+    </select>
+
+    <select id="queryResumeByUName" resultType="UserResume">
+        SELECT * FROM user_resumes WHERE u_name=#{uName}
     </select>
 </mapper>

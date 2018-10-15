@@ -28,6 +28,8 @@ CREATE TABLE `adms` (
 
 /*Data for the table `adms` */
 
+insert  into `adms`(`name`,`password`) values ('aaa','aaa');
+
 /*Table structure for table `clocks` */
 
 DROP TABLE IF EXISTS `clocks`;
@@ -54,6 +56,8 @@ CREATE TABLE `depts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `depts` */
+
+insert  into `depts`(`name`,`d_time`) values ('人事部','2018-10-03 15:47:46'),('信息部','2018-10-04 15:48:17');
 
 /*Table structure for table `emps` */
 
@@ -89,13 +93,15 @@ DROP TABLE IF EXISTS `positions`;
 CREATE TABLE `positions` (
   `name` varchar(20) NOT NULL,
   `d_name` varchar(20) DEFAULT NULL,
-  `p_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `p_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`name`),
   KEY `d_name` (`d_name`),
   CONSTRAINT `positions_ibfk_1` FOREIGN KEY (`d_name`) REFERENCES `depts` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `positions` */
+
+insert  into `positions`(`name`,`d_name`,`p_time`) values ('IT普通员工','信息部','2018-10-04 15:54:27'),('人事助理','人事部','2018-10-05 15:54:11'),('人事经理','人事部','2018-10-06 15:54:37'),('信息经理','信息部','2018-10-07 15:53:45');
 
 /*Table structure for table `re_and_pu` */
 
@@ -157,18 +163,21 @@ CREATE TABLE `user_resumes` (
   `edu_bg` varchar(20) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `email` varchar(20) DEFAULT NULL,
+  `dept` varchar(20) NOT NULL,
   `position` varchar(20) NOT NULL,
   `political` varchar(20) DEFAULT NULL,
   `on_job` varchar(20) DEFAULT NULL,
   `work_exp` varchar(20) DEFAULT NULL,
   `salary` varchar(20) DEFAULT NULL,
   `hobby` varchar(100) DEFAULT NULL,
+  `u_name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `name` (`name`),
-  CONSTRAINT `user_resumes_ibfk_1` FOREIGN KEY (`name`) REFERENCES `users` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user_resumes` */
+
+insert  into `user_resumes`(`id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`on_job`,`work_exp`,`salary`,`hobby`,`u_name`) values (6,'张三','男',20,'大专','123456','123@qq.com','人事部','人事助理','团员','助理','1年','4000-6000','篮球','aaa');
 
 /*Table structure for table `users` */
 
@@ -183,7 +192,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`name`,`password`,`type`) values ('张三','aaa',0);
+insert  into `users`(`name`,`password`,`type`) values ('aaa','aaa',0),('bbb','bbb',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

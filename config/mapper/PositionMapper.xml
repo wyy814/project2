@@ -17,4 +17,8 @@
     <select id="queryPositions" resultType="Position">
         SELECT * FROM positions WHERE d_name=#{dName}
     </select>
+
+    <select id="queryAllPositions" resultType="Position">
+        SELECT * FROM positions
+    </select>
 </mapper>

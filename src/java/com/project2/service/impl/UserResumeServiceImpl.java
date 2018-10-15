@@ -28,4 +28,9 @@ public class UserResumeServiceImpl implements UserResumeService{
     public UserResume queryResume(Integer id) {
         return userResumeDao.queryResume(id);
     }
+
+    @Override
+    public UserResume queryResumeByUName(String uName) {
+        return userResumeDao.queryResumeByUName(uName);
+    }
 }

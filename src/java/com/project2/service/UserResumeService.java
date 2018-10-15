@@ -9,4 +9,5 @@ public interface UserResumeService {
     void addResume(UserResume userResume);
     void updateResume(UserResume userResume);
     UserResume queryResume(Integer id);
+    UserResume queryResumeByUName(String uName);
 }

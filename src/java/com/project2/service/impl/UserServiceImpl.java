@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
         User user1 = userDao.queryUser(user);
         return user1!=null;
     }
+
+    @Override
+    public void updatePassword(String name, String password) {
+        userDao.updatePassword(name,password);
+    }
 }

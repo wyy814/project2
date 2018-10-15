@@ -35,4 +35,9 @@ public class PositionServiceImpl implements PositionService{
     public List<Position> queryPositions(String dName) {
         return positionDao.queryPositions(dName);
     }
+
+    @Override
+    public List<Position> queryAllPositions() {
+        return positionDao.queryAllPositions();
+    }
 }

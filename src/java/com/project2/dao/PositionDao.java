@@ -12,4 +12,5 @@ public interface PositionDao {
     void deletePosition(String name);
     void updatePosition(Position position);
     List<Position> queryPositions(String dName);
+    List<Position> queryAllPositions();
 }

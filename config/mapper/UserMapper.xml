@@ -10,6 +10,10 @@
         UPDATE users SET type=1 WHERE name=#{name}
     </update>
 
+    <update id="updatePassword" parameterType="User">
+        UPDATE users SET password=#{password} WHERE name=#{name}
+    </update>
+
     <select id="queryUserByName" resultType="User">
         SELECT * FROM users WHERE name=#{name}
     </select>

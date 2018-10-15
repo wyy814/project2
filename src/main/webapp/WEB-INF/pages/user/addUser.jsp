@@ -11,22 +11,55 @@
 <head>
     <title>Title</title>
     <style>
+        .table{
+            width: 10px;
+            height: 20px;
+            margin-top: 40px;
+            margin-left: 0;
+        }
         .t1{
-            align-content: center;
+            text-align: center;
         }
         .t2{
-            align-content: center;
+            text-align: center;
         }
         .t3{
-             align-content: center;
+            text-align: center;
          }
     </style>
+    <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".first").blur(function(){
+                var dept = $(this).val();
+                $(".position").empty();
+                var html="";
+                $.ajax({
+                    url:"/user/two",
+                    type:"POST",
+                    dataType:"json",
+                    data:{"dName":dept},
+                    success:function(data){
+                        $.each(data,function(idx,item){
+                            html+="<option>"+item.name+"</option>"
+                        });
+                        $(html).appendTo(".position")
+                    }
+                })
+            });
+            $("form").submit(function () {
+                alert("保存成功");
+            });
+
+        })
+    </script>
 </head>
 <body>
     <jsp:include page="base.jsp"/>
-    <c:if test="${param.id==null}">
-        <form action="${pageContext.request.contextPath}/userResume/insert" method="post">
-            <table>
+    <c:if test="${requestScope.userResume.id==null}">
+        <form action="/user/insert" method="post">
+            <input id="uName" hidden="hidden" name="uName" value="${sessionScope.user.name}">
+            <table class="table" border="1">
                 <tr>
                     <td class="t1" colspan="4">简历</td>
                 </tr>
@@ -35,7 +68,7 @@
                     <td>真实姓名</td>
                     <td><input type="text" name="name"></td>
                     <td>性别</td>
-                    <td><input type="radio" name="sex" value="男">男
+                    <td><input type="radio" name="sex" checked="checked" value="男">男
                         <input type="radio" name="sex" value="女">女</td>
                 </tr>
 
@@ -45,11 +78,9 @@
                     <td>学历</td>
                     <td>
                         <select name="eduBg">
-                            <option>学历</option>
                             <option>大专</option>
                             <option>本科</option>
                             <option>硕士</option>
-                            <option>博士</option>
                             <option>其它</option>
                         </select>
                     </td>
@@ -65,16 +96,16 @@
                 <tr>
                     <td>应聘职位</td>
                     <td>
-                        <select name="dept">
+                        <select class="first" name="dept">
                             <option>-部门-</option>
                             <c:forEach items="${requestScope.depts}" var="dept">
                                 <option>${dept.name}</option>
                             </c:forEach>
                         </select>
 
-                        <select name="position">
-                            <option>-职位-</option>
+                        <select name="position" class="position">
                             <c:forEach items="${requestScope.positions}" var="position">
+                                <option>-职位-</option>
                                 <option>${position.name}</option>
                             </c:forEach>
                         </select>
@@ -82,7 +113,7 @@
                     <td>政治面貌</td>
                     <td>
                         <select name="political">
-                            <option>普通群众</option>
+                            <option>群众</option>
                             <option>团员</option>
                             <option>党员</option>
                         </select>
@@ -103,8 +134,6 @@
                             <option>4000-6000</option>
                             <option>6000-8000</option>
                             <option>8000-10000</option>
-                            <option>10000-15000</option>
-                            <option>15000-20000</option>
                             <option>其它</option>
                         </select>
                     </td>
@@ -120,10 +149,10 @@
         </form>
     </c:if>
 
-    <c:if test="${param.id!=null}">
-        <form action="${pageContext.request.contextPath}/userResume/update" method="post">
+    <c:if test="${requestScope.userResume.id!=null}">
+        <form action="/user/update" method="post">
             <input hidden="hidden" name="id" value="${requestScope.userResume.id}">
-            <table>
+            <table class="table">
                 <tr>
                     <td class="t1" colspan="4">简历</td>
                 </tr>
@@ -150,12 +179,33 @@
                     <td>学历</td>
                     <td>
                         <select name="eduBg">
-                            <option>学历</option>
-                            <option>大专</option>
-                            <option>本科</option>
-                            <option>硕士</option>
-                            <option>博士</option>
-                            <option>其它</option>
+                            <c:if test="${requestScope.userResume.eduBg=='大专'}">
+                                <option selected="selected">大专</option>
+                                <option>本科</option>
+                                <option>硕士</option>
+                                <option>其它</option>
+                            </c:if>
+
+                            <c:if test="${requestScope.userResume.eduBg=='本科'}">
+                                <option>大专</option>
+                                <option selected="selected">本科</option>
+                                <option>硕士</option>
+                                <option>其它</option>
+                            </c:if>
+
+                            <c:if test="${requestScope.userResume.eduBg=='硕士'}">
+                                <option>大专</option>
+                                <option>本科</option>
+                                <option selected="selected">硕士</option>
+                                <option>其它</option>
+                            </c:if>
+
+                            <c:if test="${requestScope.userResume.eduBg=='其它'}">
+                                <option>大专</option>
+                                <option>本科</option>
+                                <option>硕士</option>
+                                <option selected="selected">其它</option>
+                            </c:if>
                         </select>
                     </td>
                 </tr>
@@ -170,7 +220,7 @@
                 <tr>
                     <td>应聘职位</td>
                     <td>
-                        <select name="dept">
+                        <select name="dept" class="first">
                             <option>-部门-</option>
                             <c:forEach items="${requestScope.depts}" var="dept">
                                 <c:if test="${requestScope.userResume.dept==dept.name}">
@@ -184,10 +234,10 @@
                             </c:forEach>
                         </select>
 
-                        <select name="position">
-                            <option>-职位-</option>
+                        <select name="position" class="position">
                             <c:forEach items="${requestScope.positions}" var="position">
                                 <c:if test="${requestScope.userResume.position==position.name}">
+                                    <option>-职位-</option>
                                     <option selected="selected">${position.name}</option>
                                 </c:if>
                             </c:forEach>
@@ -201,9 +251,23 @@
                     <td>政治面貌</td>
                     <td>
                         <select name="political">
-                            <option>普通群众</option>
-                            <option>团员</option>
-                            <option>党员</option>
+                            <c:if test="${requestScope.userResume.political=='群众'}">
+                                <option selected="selected">群众</option>
+                                <option>团员</option>
+                                <option>党员</option>
+                            </c:if>
+
+                            <c:if test="${requestScope.userResume.political=='团员'}">
+                                <option>群众</option>
+                                <option selected="selected">团员</option>
+                                <option>党员</option>
+                            </c:if>
+
+                            <c:if test="${requestScope.userResume.political=='党员'}">
+                                <option>群众</option>
+                                <option>团员</option>
+                                <option selected="selected">党员</option>
+                            </c:if>
                         </select>
                     </td>
                 </tr>
@@ -219,12 +283,33 @@
                     <td>期望薪资</td>
                     <td>
                         <select name="salary">
-                            <option>4000-6000</option>
-                            <option>6000-8000</option>
-                            <option>8000-10000</option>
-                            <option>10000-15000</option>
-                            <option>15000-20000</option>
-                            <option>其它</option>
+                            <c:if test="${requestScope.userResume.salary=='4000-6000'}">
+                                <option selected="selected">4000-6000</option>
+                                <option>6000-8000</option>
+                                <option>8000-10000</option>
+                                <option>其它</option>
+                            </c:if>
+
+                            <c:if test="${requestScope.userResume.salary=='6000-8000'}">
+                                <option>4000-6000</option>
+                                <option selected="selected">6000-8000</option>
+                                <option>8000-10000</option>
+                                <option>其它</option>
+                            </c:if>
+
+                            <c:if test="${requestScope.userResume.salary=='8000-10000'}">
+                                <option>4000-6000</option>
+                                <option>6000-8000</option>
+                                <option selected="selected">8000-10000</option>
+                                <option>其它</option>
+                            </c:if>
+
+                            <c:if test="${requestScope.userResume.salary=='其它'}">
+                                <option>4000-6000</option>
+                                <option>6000-8000</option>
+                                <option>8000-10000</option>
+                                <option selected="selected">其它</option>
+                            </c:if>
                         </select>
                     </td>
                     <td>兴趣爱好</td>

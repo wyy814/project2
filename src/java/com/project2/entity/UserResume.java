@@ -18,11 +18,12 @@ public class UserResume {
     private String workExp;//工作经验
     private String salary;//期望薪水
     private String hobby;//兴趣爱好
+    private String uName;//用户名
 
     public UserResume() {
     }
 
-    public UserResume(Integer id, String name, String sex, Integer age, String eduBg, String phone, String email, String dept, String position, String political, String onJob, String workExp, String salary, String hobby) {
+    public UserResume(Integer id, String name, String sex, Integer age, String eduBg, String phone, String email, String dept, String position, String political, String onJob, String workExp, String salary, String hobby, String uName) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -37,6 +38,7 @@ public class UserResume {
         this.workExp = workExp;
         this.salary = salary;
         this.hobby = hobby;
+        this.uName = uName;
     }
 
     public Integer getId() {
@@ -151,6 +153,14 @@ public class UserResume {
         this.dept = dept;
     }
 
+    public String getuName() {
+        return uName;
+    }
+
+    public void setuName(String uName) {
+        this.uName = uName;
+    }
+
     @Override
     public String toString() {
         return "UserResume{" +
@@ -168,6 +178,7 @@ public class UserResume {
                 ", workExp='" + workExp + '\'' +
                 ", salary='" + salary + '\'' +
                 ", hobby='" + hobby + '\'' +
+                ", uName='" + uName + '\'' +
                 '}';
     }
 }

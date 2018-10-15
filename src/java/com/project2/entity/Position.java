@@ -7,13 +7,13 @@ import java.sql.Timestamp;
  */
 public class Position {
     private String name;
-    private Integer dName;//部门名称
+    private String dName;//部门名称
     private Timestamp pTime;//职位创建时间
 
     public Position() {
     }
 
-    public Position(String name, Integer dName, Timestamp pTime) {
+    public Position(String name, String dName, Timestamp pTime) {
         this.name = name;
         this.dName = dName;
         this.pTime = pTime;
@@ -27,11 +27,11 @@ public class Position {
         this.name = name;
     }
 
-    public Integer getdName() {
+    public String getdName() {
         return dName;
     }
 
-    public void setdName(Integer dName) {
+    public void setdName(String dName) {
         this.dName = dName;
     }
 
@@ -47,7 +47,7 @@ public class Position {
     public String toString() {
         return "Position{" +
                 "name='" + name + '\'' +
-                ", dName=" + dName +
+                ", dName='" + dName + '\'' +
                 ", pTime=" + pTime +
                 '}';
     }
