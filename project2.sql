@@ -28,7 +28,7 @@ CREATE TABLE `adms` (
 
 /*Data for the table `adms` */
 
-insert  into `adms`(`name`,`password`) values ('aaa','aaa');
+insert  into `adms`(`name`,`password`) values ('mmm','mmm');
 
 /*Table structure for table `applys` */
 
@@ -42,11 +42,11 @@ CREATE TABLE `applys` (
   `c_state` varchar(20) NOT NULL DEFAULT '未查看',
   `in_state` varchar(20) NOT NULL DEFAULT '未面试',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `applys` */
 
-insert  into `applys`(`id`,`r_id`,`a_name`,`d_time`,`c_state`,`in_state`) values (1,3,'张三','2018-10-15','已查看','未面试');
+insert  into `applys`(`id`,`r_id`,`a_name`,`d_time`,`c_state`,`in_state`) values (3,5,'张三','2018-10-16','已查看','未面试'),(4,6,'李四','2018-10-16','已查看','未面试'),(5,7,'aaa','2018-10-16','已查看','未面试'),(6,8,'abc','2018-10-16','已查看','未面试'),(7,9,'eee','2018-10-16','已查看','未面试');
 
 /*Table structure for table `backs` */
 
@@ -63,7 +63,7 @@ CREATE TABLE `backs` (
 
 /*Data for the table `backs` */
 
-insert  into `backs`(`r_id`,`t_time`,`see`,`interview`,`in_time`,`employed`) values (3,'2018-10-15','未查看','按时面试','2018-10-25','未录用');
+insert  into `backs`(`r_id`,`t_time`,`see`,`interview`,`in_time`,`employed`) values (5,'2018-10-16','未查看','按时面试','2018-10-25','未录用'),(6,'2018-10-16','未查看','按时面试','2018-10-26','未录用'),(7,'2018-10-16','未查看','按时面试','2018-10-25','未录用'),(8,'2018-10-16','未查看','按时面试','2018-10-26','未录用'),(9,'2018-10-16','未查看','按时面试','2018-10-27','未录用');
 
 /*Table structure for table `clocks` */
 
@@ -111,7 +111,7 @@ CREATE TABLE `emps` (
   `dept` varchar(20) NOT NULL,
   `position` varchar(20) NOT NULL,
   `attendance` varchar(20) DEFAULT NULL,
-  `state` varchar(20) NOT NULL,
+  `state` varchar(20) NOT NULL DEFAULT '在职',
   PRIMARY KEY (`id`),
   KEY `dept` (`dept`),
   KEY `position` (`position`),
@@ -120,6 +120,30 @@ CREATE TABLE `emps` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `emps` */
+
+/*Table structure for table `own` */
+
+DROP TABLE IF EXISTS `own`;
+
+CREATE TABLE `own` (
+  `r_id` bigint(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `sex` varchar(20) NOT NULL,
+  `age` int(11) NOT NULL,
+  `edu_bg` varchar(20) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(20) DEFAULT NULL,
+  `dept` varchar(20) NOT NULL,
+  `position` varchar(20) NOT NULL,
+  `political` varchar(20) DEFAULT NULL,
+  `in_time` date NOT NULL,
+  `hobby` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `own` */
+
+insert  into `own`(`r_id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`in_time`,`hobby`) values (7,'aaa','女',23,'本科','456','456@qq.com','人事部','人事助理',NULL,'2018-10-25',NULL),(8,'abc','女',29,'硕士','963123','963@qqcom','信息部','信息经理',NULL,'2018-10-26',''),(9,'eee','男',27,'本科','159','9@qq.com','人事部','人事经理','群众','2018-10-27','篮球');
 
 /*Table structure for table `positions` */
 
@@ -208,11 +232,11 @@ CREATE TABLE `user_resumes` (
   `u_name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user_resumes` */
 
-insert  into `user_resumes`(`id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`on_job`,`work_exp`,`salary`,`hobby`,`u_name`) values (3,'张三','男',20,'大专','123456','123@qq.com','人事部','人事助理','群众','助理','1年','4000-6000','篮球','aaa');
+insert  into `user_resumes`(`id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`on_job`,`work_exp`,`salary`,`hobby`,`u_name`) values (5,'张三','男',28,'本科','123456','123@qq.com','人事部','人事经理','团员','经理','5年','8000-10000','读书','aaa'),(6,'李四','男',21,'大专','123147','2@qq.com','信息部','IT普通员工','群众','java开发','1年','6000-8000','旅行','bbb'),(7,'aaa','女',23,'本科','456','456@qq.com','人事部','人事助理','党员','助理','1年','4000-6000','登山','ccc'),(8,'abc','女',29,'硕士','963','963@qqcom','信息部','信息经理','党员','经理','5年','其它','读书','ddd'),(9,'eee','男',27,'本科','159','9@qq.com','人事部','人事经理','群众','经理','3年','8000-10000','篮球','eee');
 
 /*Table structure for table `users` */
 
@@ -227,7 +251,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`name`,`password`,`type`) values ('aaa','aaa',0),('bbb','bbb',0);
+insert  into `users`(`name`,`password`,`type`) values ('aaa','aaa',1),('bbb','bbb',1),('ccc','ccc',1),('ddd','ddd',1),('eee','eee',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

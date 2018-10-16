@@ -9,8 +9,14 @@
 <html>
 <head>
     <style>
-        body {
+        body{
             background-image: url(/images/1.jpg);
+        }
+        #up{
+            text-align: right;
+        }
+        #down{
+            text-align: right;
         }
     </style>
 
@@ -24,19 +30,18 @@
     <script src="/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 </head>
 <body>
-<span>当前用户：${sessionScope.adm.name}</span>
+    <span>当前用户：${sessionScope.user.name}</span>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li><a href="/adm/show1">应聘管理</a></li>
-                <li><a href="/adm/show2">面试</a></li>
-                <li><a href="/adm/#">部门职位</a></li>
-                <li><a href="/adm/#">培训管理</a></li>
-                <li><a href="/adm/#">员工管理</a></li>
-                <li><a href="/adm/#">奖惩管理</a></li>
-                <li><a href="/adm/#">薪资管理</a></li>
-                <li><a href="/adm/#">工资异议</a></li>
-                <li><a href="/admlogin.jsp">退出</a></li>
+                <li><a href="/emp/own">个人信息</a></li>
+                <li><a href="#">我的考勤</a></li>
+                <li><a href="#">我的奖惩</a></li>
+                <li><a href="/emp/see">部门职位</a></li>
+                <li><a href="#">我的薪资</a></li>
+                <li><a href="#">退出</a></li>
+                <li><a id="up" href="">上班签到</a></li>
+                <li><a id="down" href="">下班签到</a></li>
             </ul>
         </div>
     </nav>

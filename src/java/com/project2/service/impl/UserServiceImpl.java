@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateUser(String name) {
+        userDao.updateUser(name);
+    }
+
+    @Override
     public void updatePassword(String name, String password) {
         userDao.updatePassword(name,password);
     }

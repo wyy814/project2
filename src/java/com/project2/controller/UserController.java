@@ -78,7 +78,10 @@ public class UserController {
         }
         User user = userService.queryUserByName(name);
         session.setAttribute("user",user);
-        return "user/base";
+        if (user.getType()==0){
+            return "user/base";
+        }
+        return "emp/base";
     }
 
     /**
@@ -87,7 +90,8 @@ public class UserController {
      * @return
      */
     @RequestMapping("register")
-    public String register(User user){
+    public String register(HttpSession session,User user){
+        session.setAttribute("user",user);
         userService.register(user);
         return "user/base";
     }

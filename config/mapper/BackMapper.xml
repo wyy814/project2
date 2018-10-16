@@ -17,4 +17,8 @@
     <select id="queryBackByRId" resultType="Back">
         SELECT * FROM backs WHERE r_id=#{rId}
     </select>
+
+    <select id="queryAllBack" resultType="Back">
+        SELECT * FROM backs
+    </select>
 </mapper>

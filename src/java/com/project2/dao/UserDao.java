@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface UserDao {
     void insertUser(User user);
-    void updateUser(User user);
+    void updateUser(String name);
     void updatePassword(@Param("name") String name, @Param("password") String password);
     User queryUserByName(String name);
     User queryUser(User user);

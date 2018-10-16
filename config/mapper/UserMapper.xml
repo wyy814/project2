@@ -6,7 +6,7 @@
         INSERT INTO users(name,password) VALUES (#{name},#{password})
     </insert>
 
-    <update id="updateUser" parameterType="User">
+    <update id="updateUser">
         UPDATE users SET type=1 WHERE name=#{name}
     </update>
 

@@ -6,6 +6,8 @@ import com.project2.service.BackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/10/15 0015.
  */
@@ -32,5 +34,10 @@ public class BackServiceImpl implements BackService{
     @Override
     public Back queryBackByRId(Integer rId) {
         return backDao.queryBackByRId(rId);
+    }
+
+    @Override
+    public List<Back> queryAllBack() {
+        return backDao.queryAllBack();
     }
 }

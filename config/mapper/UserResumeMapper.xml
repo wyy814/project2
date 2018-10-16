@@ -12,7 +12,7 @@
         UPDATE
             user_resumes
         SET
-            name=#{name},sex=#{sex},age=#{age},edu_bg=#{eduBg},phone=#{phone},email=#{email}, position=#{position},political=#{political},on_job=#{onJob},work_exp=#{workExp},salary=#{salary},hobby=#{hobby}
+            name=#{name},sex=#{sex},age=#{age},edu_bg=#{eduBg},phone=#{phone},email=#{email}, dept=#{dept},position=#{position},political=#{political},on_job=#{onJob},work_exp=#{workExp},salary=#{salary},hobby=#{hobby}
         WHERE
             id=#{id}
     </update>

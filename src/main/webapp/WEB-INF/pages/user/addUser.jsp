@@ -40,7 +40,7 @@
                         $.each(data,function(idx,item){
                             html+="<option>"+item.name+"</option>"
                         });
-                        $(html).appendTo(".position")
+                        $(html).appendTo(".position");
                     }
                 })
             });
@@ -312,6 +312,7 @@
                     <td class="t2" colspan="4"><input type="submit" value="保存"></td>
                 </tr>
             </table>
+        </form>
     </c:if>
 </body>
 </html>

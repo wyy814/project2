@@ -9,5 +9,6 @@ public interface UserService {
     User queryUserByName(String name);
     void register(User user);
     boolean login(User user);
+    void updateUser(String name);
     void updatePassword(String name,String password);
 }

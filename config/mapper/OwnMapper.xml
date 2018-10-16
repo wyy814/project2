@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project2.dao.OwnDao">
+
+    <insert id="insertOwn" parameterType="Own">
+        INSERT INTO
+            own (r_id,name,sex,age,edu_bg,phone,email,dept,position,political,in_time,hobby)
+        VALUES (#{rId},#{name},#{sex},#{age},#{eduBg},#{phone},#{email},#{dept},#{position},#{political},#{inTime},#{hobby})
+    </insert>
+
+    <update id="updateOwn" parameterType="Own">
+        UPDATE
+            own
+        SET
+            r_id=#{rId},name=#{name},sex=#{sex},age=#{age},edu_bg=#{eduBg},phone=#{phone},email=#{email}, dept=#{dept},position=#{position},political=#{political},in_time=#{inTime},hobby=#{hobby}
+        WHERE
+            r_id=#{rId}
+    </update>
+
+    <select id="queryOwn" resultType="Own">
+        SELECT * FROM own WHERE r_id=#{rId}
+    </select>
+
+    <select id="queryAllOwns" resultType="Own">
+        SELECT * FROM own
+    </select>
+</mapper>
