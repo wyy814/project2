@@ -23,9 +23,6 @@
         .t2{
             text-align: center;
         }
-        .t3{
-            text-align: center;
-         }
     </style>
     <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
@@ -47,10 +44,6 @@
                     }
                 })
             });
-            $("form").submit(function () {
-                alert("保存成功");
-            });
-
         })
     </script>
 </head>
@@ -142,8 +135,7 @@
                 </tr>
 
                 <tr>
-                    <td class="t2" colspan="2"><input type="submit" value="保存"></td>
-                    <td class="t3" colspan="2"><input type="button" value="返回"></td>
+                    <td class="t2" colspan="4"><input type="submit" value="保存"></td>
                 </tr>
             </table>
         </form>
@@ -317,8 +309,7 @@
                 </tr>
 
                 <tr>
-                    <td class="t2" colspan="2"><input type="submit" value="保存"></td>
-                    <td class="t3" colspan="2"><input type="button" value="返回"></td>
+                    <td class="t2" colspan="4"><input type="submit" value="保存"></td>
                 </tr>
             </table>
     </c:if>

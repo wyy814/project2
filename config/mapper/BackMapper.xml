@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project2.dao.BackDao">
+
+    <insert id="insertBack" parameterType="Back">
+        INSERT INTO backs(r_id,t_time,in_time) VALUES (#{rId},#{tTime},#{inTime})
+    </insert>
+
+    <update id="updateBackSee">
+        UPDATE backs SET see='已查看' WHERE r_id=#{rId}
+    </update>
+
+    <update id="updateBackIn">
+        UPDATE backs SET interview='已录取' WHERE r_id=#{rId}
+    </update>
+
+    <select id="queryBackByRId" resultType="Back">
+        SELECT * FROM backs WHERE r_id=#{rId}
+    </select>
+</mapper>

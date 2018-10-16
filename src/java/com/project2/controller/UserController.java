@@ -1,21 +1,17 @@
 package com.project2.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.project2.entity.Dept;
-import com.project2.entity.Position;
-import com.project2.entity.User;
-import com.project2.entity.UserResume;
-import com.project2.service.DeptService;
-import com.project2.service.PositionService;
-import com.project2.service.UserResumeService;
-import com.project2.service.UserService;
+import com.project2.entity.*;
+import com.project2.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -32,6 +28,10 @@ public class UserController {
     private DeptService deptService;
     @Autowired
     private PositionService positionService;
+    @Autowired
+    private ApplyService applyService;
+    @Autowired
+    private BackService backService;
 
     /**
      * 用户名是否存在
@@ -70,7 +70,12 @@ public class UserController {
      * @return
      */
     @RequestMapping("login2")
-    public String login2(String name, HttpSession session){
+    public String login2(String name, HttpSession session, Model model){
+        UserResume userResume = userResumeService.queryResumeByUName(name);
+        if (userResume!=null){
+            Back back = backService.queryBackByRId(userResume.getId());
+            model.addAttribute("back",back);
+        }
         User user = userService.queryUserByName(name);
         session.setAttribute("user",user);
         return "user/base";
@@ -137,6 +142,12 @@ public class UserController {
     @RequestMapping("insert")
     public String insert(UserResume userResume){
         userResumeService.addResume(userResume);
+        UserResume userResume1 = userResumeService.queryResumeByUName(userResume.getuName());
+        Apply apply = new Apply();
+        apply.setrId(userResume1.getId());
+        apply.setaName(userResume1.getName());
+        apply.setdTime(new Date(System.currentTimeMillis()));
+        applyService.insertApply(apply);
         return "user/base";
     }
 
@@ -196,9 +207,33 @@ public class UserController {
         }
     }
 
+    /**
+     * 修改密码
+     * @param name
+     * @param password
+     * @return
+     */
     @RequestMapping("updatePassword")
     public String updatePassword(String name,String password){
         userService.updatePassword(name,password);
         return "user/base";
+    }
+
+    /**
+     * 用户反馈
+     * @return
+     */
+    @RequestMapping("back")
+    public String back(HttpSession session,Model model){
+        User user = (User) session.getAttribute("user");
+        UserResume userResume = userResumeService.queryResumeByUName(user.getName());
+        if (userResume!=null){
+            Back back = backService.queryBackByRId(userResume.getId());
+            if (back!=null){
+                backService.updateBackSee(user.getName());
+                model.addAttribute("back",back);
+            }
+        }
+        return "user/back";
     }
 }

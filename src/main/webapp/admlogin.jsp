@@ -10,7 +10,7 @@
 <head>
     <style>
         body{
-            background-image: url(/images/2.png);
+            background-image: url(/images/1.jpg);
         }
         #one{
             border: 1px;
@@ -39,7 +39,7 @@
                     if(data=="false"){
                         $("#s1").text("用户名或密码错误");
                     }else {
-                        location.href="/adm/login2";
+                        location.href="/adm/login2?name="+name+"&password="+password;
                     }
                 });
                 return false;

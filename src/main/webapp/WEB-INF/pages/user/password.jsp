@@ -10,15 +10,8 @@
 <head>
     <style>
         table{
-            border: 1px;
-            width: 350px;
-            height: 250px;
             margin-top: 80px;
             margin-left: 400px;
-            padding-top: 80px;
-            padding-left: 120px;
-            padding-right: 30px;
-            padding-bottom: 100px;
         }
         #s1{
             color: red;

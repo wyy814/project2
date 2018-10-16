@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project2.dao.ApplyDao">
+
+    <insert id="insertApply" parameterType="Apply">
+        INSERT INTO applys(r_id,a_name,d_time) VALUES (#{rId},#{aName},#{dTime})
+    </insert>
+
+    <delete id="deleteApply">
+        DELETE FROM applys WHERE id=#{id}
+    </delete>
+
+    <update id="updateApplyCState">
+        UPDATE applys SET c_state='已查看' WHERE id=#{id}
+    </update>
+
+    <update id="updateApplyInState">
+        UPDATE applys SET in_state='已面试' WHERE id=#{id}
+    </update>
+
+    <select id="queryApplyByRId" resultType="Apply">
+        SELECT * FROM applys WHERE r_id=#{rId}
+    </select>
+
+    <select id="queryAllApplys" resultType="Apply">
+        SELECT * FROM applys
+    </select>
+</mapper>

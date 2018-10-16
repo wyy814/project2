@@ -22,17 +22,27 @@
 
     <script src="/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
     <script src="/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var back = $("#back").val();
+            if(back!=""){
+                alert("通知：您有一份面试通知，请在反馈中查看");
+            }
+        })
+    </script>
 </head>
 <body>
-<span>当前用户：${sessionScope.user.name}</span>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a href="/user/addUser">查看简历</a></li>
-            <li><a href="/user/up">修改密码</a></li>
-            <li><a href="/login.jsp">退出</a></li>
-        </ul>
-    </div>
-</nav>
+    <span>当前用户：${sessionScope.user.name}</span>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="/user/back">反馈</a></li>
+                <li><a href="/user/addUser">查看简历</a></li>
+                <li><a href="/user/up">修改密码</a></li>
+                <li><a href="/login.jsp">退出</a></li>
+            </ul>
+        </div>
+    </nav>
+    <input id="back" hidden="hidden" value="${requestScope.back}">
 </body>
 </html>

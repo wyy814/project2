@@ -30,6 +30,41 @@ CREATE TABLE `adms` (
 
 insert  into `adms`(`name`,`password`) values ('aaa','aaa');
 
+/*Table structure for table `applys` */
+
+DROP TABLE IF EXISTS `applys`;
+
+CREATE TABLE `applys` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `r_id` bigint(20) NOT NULL,
+  `a_name` varchar(20) NOT NULL,
+  `d_time` date NOT NULL,
+  `c_state` varchar(20) NOT NULL DEFAULT '未查看',
+  `in_state` varchar(20) NOT NULL DEFAULT '未面试',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `applys` */
+
+insert  into `applys`(`id`,`r_id`,`a_name`,`d_time`,`c_state`,`in_state`) values (1,3,'张三','2018-10-15','已查看','未面试');
+
+/*Table structure for table `backs` */
+
+DROP TABLE IF EXISTS `backs`;
+
+CREATE TABLE `backs` (
+  `r_id` bigint(20) DEFAULT NULL,
+  `t_time` date DEFAULT NULL,
+  `see` varchar(20) NOT NULL DEFAULT '未查看',
+  `interview` varchar(20) NOT NULL DEFAULT '按时面试',
+  `in_time` date DEFAULT NULL,
+  `employed` varchar(20) NOT NULL DEFAULT '未录用'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `backs` */
+
+insert  into `backs`(`r_id`,`t_time`,`see`,`interview`,`in_time`,`employed`) values (3,'2018-10-15','未查看','按时面试','2018-10-25','未录用');
+
 /*Table structure for table `clocks` */
 
 DROP TABLE IF EXISTS `clocks`;
@@ -173,11 +208,11 @@ CREATE TABLE `user_resumes` (
   `u_name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user_resumes` */
 
-insert  into `user_resumes`(`id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`on_job`,`work_exp`,`salary`,`hobby`,`u_name`) values (6,'张三','男',20,'大专','123456','123@qq.com','人事部','人事助理','团员','助理','1年','4000-6000','篮球','aaa');
+insert  into `user_resumes`(`id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`on_job`,`work_exp`,`salary`,`hobby`,`u_name`) values (3,'张三','男',20,'大专','123456','123@qq.com','人事部','人事助理','群众','助理','1年','4000-6000','篮球','aaa');
 
 /*Table structure for table `users` */
 
