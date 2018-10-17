@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -34,6 +35,12 @@ public class AdmController {
     private UserService userService;
     @Autowired
     private OwnService ownService;
+    @Autowired
+    private DeptService deptService;
+    @Autowired
+    private PositionService positionService;
+    @Autowired
+    private TrainService trainService;
 
     /**
      * 管理员名和密码是否正确
@@ -164,6 +171,95 @@ public class AdmController {
         Back back = backService.queryBackByRId(rId);
         own.setInTime(back.getInTime());
         ownService.insertOwn(own);
+        return "adm/base";
+    }
+
+    /**
+     * 查看部门职能
+     * @param model
+     * @return
+     */
+    @RequestMapping("dept")
+    public String dept(Model model){
+        List<Dept> depts = deptService.queryAllDept();
+        List<Position> positions=positionService.queryAllPositions();
+        model.addAttribute("depts",depts);
+        model.addAttribute("positions",positions);
+        return "adm/dept";
+    }
+
+    /**
+     * 新增部门职位
+     * @param dept
+     * @param positionForDept
+     * @param position
+     * @return
+     */
+    @RequestMapping("dp")
+    public String dp(String dept,String positionForDept,String position){
+        if (!dept.equals("")){
+            Dept dept1 = new Dept();
+            dept1.setName(dept);
+            dept1.setdTime(new Timestamp(System.currentTimeMillis()));
+            deptService.addDept(dept1);
+        }
+        if ((!positionForDept.equals(""))&&(!position.equals(""))){
+            Position position1 = new Position();
+            position1.setName(position);
+            position1.setdName(positionForDept);
+            position1.setpTime(new Timestamp(System.currentTimeMillis()));
+            positionService.addPosition(position1);
+        }
+        return "adm/base";
+    }
+
+    /**
+     * 查看培训
+     * @param model
+     * @return
+     */
+    @RequestMapping("train")
+    public String train(Model model){
+        List<Train> trains = trainService.queryAllTrain();
+        List<Dept> depts = deptService.queryAllDept();
+        model.addAttribute("trains",trains);
+        model.addAttribute("depts",depts);
+        return "adm/train";
+    }
+
+    /**
+     * 增加培训项目
+     * @param train
+     * @return
+     */
+    @RequestMapping("add")
+    public String add(Train train){
+        trainService.insertTrain(train);
+        return "adm/base";
+    }
+
+    /**
+     * 编辑培训项目
+     * @param id
+     * @return
+     */
+    @RequestMapping("edit")
+    public String edit(Integer id,Model model){
+        Train train = trainService.queryTrainById(id);
+        List<Dept> depts = deptService.queryAllDept();
+        model.addAttribute("train",train);
+        model.addAttribute("depts",depts);
+        return "adm/edit";
+    }
+
+    /**
+     * 更改培训项目
+     * @param train
+     * @return
+     */
+    @RequestMapping("update")
+    public String update(Train train){
+        trainService.updateTrain(train);
         return "adm/base";
     }
 
