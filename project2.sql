@@ -92,7 +92,7 @@ CREATE TABLE `depts` (
 
 /*Data for the table `depts` */
 
-insert  into `depts`(`name`,`d_time`) values ('人事部','2018-10-03 15:47:46'),('信息部','2018-10-04 15:48:17');
+insert  into `depts`(`name`,`d_time`) values ('人事部','2018-10-03 15:47:46'),('信息部','2018-10-04 15:48:17'),('销售部','2018-10-16 17:23:50');
 
 /*Table structure for table `emps` */
 
@@ -160,7 +160,7 @@ CREATE TABLE `positions` (
 
 /*Data for the table `positions` */
 
-insert  into `positions`(`name`,`d_name`,`p_time`) values ('IT普通员工','信息部','2018-10-04 15:54:27'),('人事助理','人事部','2018-10-05 15:54:11'),('人事经理','人事部','2018-10-06 15:54:37'),('信息经理','信息部','2018-10-07 15:53:45');
+insert  into `positions`(`name`,`d_name`,`p_time`) values ('IT普通员工','信息部','2018-10-04 15:54:27'),('人事主管','人事部','2018-10-16 17:20:28'),('人事助理','人事部','2018-10-05 15:54:11'),('人事经理','人事部','2018-10-06 15:54:37'),('信息经理','信息部','2018-10-07 15:53:45'),('销售顾问','销售部','2018-10-16 17:23:51');
 
 /*Table structure for table `re_and_pu` */
 
@@ -206,9 +206,11 @@ CREATE TABLE `trains` (
   `t_dept` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `t_dept` (`t_dept`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `trains` */
+
+insert  into `trains`(`id`,`name`,`t_time`,`t_dept`) values (1,'aaa','2018-10-27','销售部');
 
 /*Table structure for table `user_resumes` */
 

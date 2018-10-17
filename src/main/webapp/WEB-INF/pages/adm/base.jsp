@@ -30,8 +30,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="/adm/show1">应聘管理</a></li>
                 <li><a href="/adm/show2">面试</a></li>
-                <li><a href="/adm/#">部门职位</a></li>
-                <li><a href="/adm/#">培训管理</a></li>
+                <li><a href="/adm/dept">部门职位</a></li>
+                <li><a href="/adm/train">培训管理</a></li>
+
                 <li><a href="/adm/#">员工管理</a></li>
                 <li><a href="/adm/#">奖惩管理</a></li>
                 <li><a href="/adm/#">薪资管理</a></li>
