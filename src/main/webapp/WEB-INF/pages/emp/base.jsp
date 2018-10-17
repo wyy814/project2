@@ -12,12 +12,6 @@
         body{
             background-image: url(/images/1.jpg);
         }
-        #up{
-            text-align: right;
-        }
-        #down{
-            text-align: right;
-        }
     </style>
 
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
@@ -34,14 +28,14 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li><a href="/emp/own">个人信息</a></li>
+                <li><a href="">上班签到</a></li>
+                <li><a href="">下班签到</a></li>
                 <li><a href="#">我的考勤</a></li>
                 <li><a href="#">我的奖惩</a></li>
-                <li><a href="/emp/see">部门职位</a></li>
                 <li><a href="#">我的薪资</a></li>
-                <li><a href="#">退出</a></li>
-                <li><a id="up" href="">上班签到</a></li>
-                <li><a id="down" href="">下班签到</a></li>
+                <li><a href="/emp/own">个人信息</a></li>
+                <li><a href="/emp/see">部门职位</a></li>
+                <li><a href="/login.jsp">退出</a></li>
             </ul>
         </div>
     </nav>

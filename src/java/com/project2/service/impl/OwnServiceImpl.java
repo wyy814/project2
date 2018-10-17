@@ -32,6 +32,16 @@ public class OwnServiceImpl implements OwnService{
     }
 
     @Override
+    public List<Own> queryOwnByDept(String dept) {
+        return ownDao.queryOwnByDept(dept);
+    }
+
+    @Override
+    public List<Own> queryOwnByPosition(String dept, String position) {
+        return ownDao.queryOwnByPosition(dept, position);
+    }
+
+    @Override
     public List<Own> queryAllOwns() {
         return ownDao.queryAllOwns();
     }

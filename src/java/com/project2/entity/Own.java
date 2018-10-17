@@ -18,11 +18,12 @@ public class Own {
     private String political;//政治面貌
     private Date inTime;//入职时间
     private String hobby;//兴趣爱好
+    private String state;//状态
 
     public Own() {
     }
 
-    public Own(Integer rId, String name, String sex, Integer age, String eduBg, String phone, String email, String dept, String position, String political, Date inTime, String hobby) {
+    public Own(Integer rId, String name, String sex, Integer age, String eduBg, String phone, String email, String dept, String position, String political, Date inTime, String hobby, String state) {
         this.rId = rId;
         this.name = name;
         this.sex = sex;
@@ -35,6 +36,7 @@ public class Own {
         this.political = political;
         this.inTime = inTime;
         this.hobby = hobby;
+        this.state = state;
     }
 
     public Integer getrId() {
@@ -133,6 +135,14 @@ public class Own {
         this.hobby = hobby;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "Own{" +
@@ -148,6 +158,7 @@ public class Own {
                 ", political='" + political + '\'' +
                 ", inTime=" + inTime +
                 ", hobby='" + hobby + '\'' +
+                ", state='" + state + '\'' +
                 '}';
     }
 }

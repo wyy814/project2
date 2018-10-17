@@ -18,7 +18,15 @@
     </update>
 
     <select id="queryOwn" resultType="Own">
-        SELECT * FROM own WHERE r_id=#{rId}
+        SELECT * FROM own WHERE  r_id=#{rId}
+    </select>
+
+    <select id="queryOwnByDept" resultType="Own">
+        SELECT * FROM own WHERE dept=#{dept}
+    </select>
+
+    <select id="queryOwnByPosition" resultType="Own">
+        SELECT * FROM own WHERE dept=#{dept} AND position=#{position}
     </select>
 
     <select id="queryAllOwns" resultType="Own">

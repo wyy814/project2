@@ -11,5 +11,7 @@ public interface OwnService {
     void insertOwn(Own own);
     void updateOwn(Own own);
     Own queryOwn(Integer rId);
+    List<Own> queryOwnByDept(String dept);
+    List<Own> queryOwnByPosition(String dept,String position);
     List<Own> queryAllOwns();
 }

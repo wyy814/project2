@@ -22,8 +22,8 @@ public class PositionServiceImpl implements PositionService{
     }
 
     @Override
-    public void deletePosition(String name) {
-        positionDao.deletePosition(name);
+    public void deletePosition(String dept,String position) {
+        positionDao.deletePosition(dept, position);
     }
 
     @Override

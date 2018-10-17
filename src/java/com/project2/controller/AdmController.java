@@ -214,6 +214,41 @@ public class AdmController {
     }
 
     /**
+     * 删除部门
+     * @param dept
+     * @return
+     */
+    @RequestMapping("deleteDept")
+    @ResponseBody
+    public String deleteDept(String dept){
+        List<Own> owns = ownService.queryOwnByDept(dept);
+        if (owns.size()==0){
+            deptService.deleteDept(dept);
+            return "ok";
+        }else {
+            return "no";
+        }
+    }
+
+    /**
+     * 删除职位
+     * @param dept
+     * @param position
+     * @return
+     */
+    @RequestMapping("deletePosition")
+    @ResponseBody
+    public String deletePosition(String dept,String position){
+        List<Own> owns = ownService.queryOwnByPosition(dept,position);
+        if (owns.size()==0){
+            positionService.deletePosition(dept,position);
+            return "ok";
+        }else {
+            return "no";
+        }
+    }
+
+    /**
      * 查看培训
      * @param model
      * @return
@@ -260,6 +295,12 @@ public class AdmController {
     @RequestMapping("update")
     public String update(Train train){
         trainService.updateTrain(train);
+        return "adm/base";
+    }
+
+    @RequestMapping("emp")
+    public String emp(){
+
         return "adm/base";
     }
 

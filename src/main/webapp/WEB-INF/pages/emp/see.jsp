@@ -11,7 +11,7 @@
 <head>
     <style>
         #table{
-            font-size: 25px;
+            font-size: 35px;
             margin-top: 80px;
             margin-left: 400px;
         }
@@ -44,6 +44,10 @@
     <table id="table">
         <tr>
             <td>部门</td>
+            <td>职位</td>
+        </tr>
+
+        <tr>
             <td>
                 <select class="first">
                     <c:forEach items="${requestScope.depts}" var="dept">
@@ -51,12 +55,7 @@
                     </c:forEach>
                 </select>
             </td>
-        </tr>
 
-        <tr></tr>
-
-        <tr>
-            <td>职位</td>
             <td>
                 <select class="position">
                     <c:forEach items="${requestScope.positions}" var="position">
