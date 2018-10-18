@@ -8,6 +8,10 @@
         VALUES (#{rId},#{name},#{sex},#{age},#{eduBg},#{phone},#{email},#{dept},#{position},#{political},#{inTime},#{hobby})
     </insert>
 
+    <update id="updateOwnByRId">
+        UPDATE own SET state='离职' WHERE r_id=#{rId}
+    </update>
+
     <update id="updateOwn" parameterType="Own">
         UPDATE
             own
@@ -16,6 +20,14 @@
         WHERE
             r_id=#{rId}
     </update>
+
+    <update id="updateOwnDp">
+        UPDATE own SET dept=#{dept},position=#{position} WHERE r_id=#{rId}
+    </update>
+
+    <select id="queryOwnByState" resultType="Own">
+        SELECT * FROM own WHERE  state=#{state}
+    </select>
 
     <select id="queryOwn" resultType="Own">
         SELECT * FROM own WHERE  r_id=#{rId}

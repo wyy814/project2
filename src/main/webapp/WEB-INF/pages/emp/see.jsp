@@ -11,7 +11,7 @@
 <head>
     <style>
         #table{
-            font-size: 35px;
+            font-size: 30px;
             margin-top: 80px;
             margin-left: 400px;
         }

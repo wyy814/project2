@@ -10,7 +10,10 @@ import java.util.List;
 public interface OwnService {
     void insertOwn(Own own);
     void updateOwn(Own own);
+    void updateOwnDp(Integer rId,String dept,String position);
+    void updateOwnByRId(Integer rId);
     Own queryOwn(Integer rId);
+    List<Own> queryOwnByState(String state);
     List<Own> queryOwnByDept(String dept);
     List<Own> queryOwnByPosition(String dept,String position);
     List<Own> queryAllOwns();

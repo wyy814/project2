@@ -11,8 +11,11 @@ import java.util.List;
 public interface OwnDao {
     void insertOwn(Own own);
     void updateOwn(Own own);
+    void updateOwnDp(@Param("rId")Integer rId,@Param("dept") String dept,@Param("position") String position);
+    void updateOwnByRId(Integer rId);
     Own queryOwn(Integer rId);
     List<Own> queryOwnByDept(String dept);
+    List<Own> queryOwnByState(String state);
     List<Own> queryOwnByPosition(@Param("dept") String dept, @Param("position") String position);
     List<Own> queryAllOwns();
 }

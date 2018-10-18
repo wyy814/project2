@@ -1,5 +1,6 @@
 package com.project2.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.project2.entity.*;
 import com.project2.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -298,10 +299,82 @@ public class AdmController {
         return "adm/base";
     }
 
-    @RequestMapping("emp")
-    public String emp(){
+    /**
+     * jsp--controller
+     * @return
+     */
+    @RequestMapping("own")
+    public String own(Model model){
+        List<Own> owns = ownService.queryOwnByState("在职");
+        model.addAttribute("owns",owns);
+        return "adm/emp";
+    }
 
+    /**
+     * 调动部门职位
+     * @param rId
+     * @param model
+     * @return
+     */
+    @RequestMapping("move")
+    public String move(Integer rId,Model model){
+        List<Dept> depts = deptService.queryAllDept();
+        List<Position> positions=positionService.queryAllPositions();
+        model.addAttribute("depts",depts);
+        model.addAttribute("positions",positions);
+        Own own = ownService.queryOwn(rId);
+        model.addAttribute("own",own);
+        return "adm/move";
+    }
+
+    /**
+     * 二级联动
+     * @param dName
+     * @return
+     */
+    @RequestMapping("two")
+    @ResponseBody
+    public String two(String dName){
+        List<Position> positions=positionService.queryPositions(dName);
+        String json = JSON.toJSONString(positions);
+        return json;
+    }
+
+    /**
+     * 人事调动
+     * @param rId
+     * @param dept
+     * @param position
+     * @return
+     */
+    @RequestMapping("updateDp")
+    public String updateDp(Integer rId,String dept,String position){
+        ownService.updateOwnDp(rId, dept, position);
         return "adm/base";
+    }
+
+    /**
+     * 开除员工
+     * @param rId
+     * @return
+     */
+    @RequestMapping("deleteOwn")
+    @ResponseBody
+    public String deleteOwn(Integer rId){
+        ownService.updateOwnByRId(rId);
+        return "ok";
+    }
+
+    /**
+     * 查看离职人员
+     * @param model
+     * @return
+     */
+    @RequestMapping("see")
+    public String see(Model model){
+        List<Own> owns = ownService.queryOwnByState("离职");
+        model.addAttribute("owns",owns);
+        return "adm/leave";
     }
 
     @InitBinder

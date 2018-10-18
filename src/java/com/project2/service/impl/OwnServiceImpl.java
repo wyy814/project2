@@ -27,8 +27,23 @@ public class OwnServiceImpl implements OwnService{
     }
 
     @Override
+    public void updateOwnDp(Integer rId, String dept, String position) {
+        ownDao.updateOwnDp(rId, dept, position);
+    }
+
+    @Override
+    public void updateOwnByRId(Integer rId) {
+        ownDao.updateOwnByRId(rId);
+    }
+
+    @Override
     public Own queryOwn(Integer rId) {
         return ownDao.queryOwn(rId);
+    }
+
+    @Override
+    public List<Own> queryOwnByState(String state) {
+        return ownDao.queryOwnByState(state);
     }
 
     @Override

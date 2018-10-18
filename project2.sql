@@ -117,7 +117,7 @@ CREATE TABLE `own` (
 
 /*Data for the table `own` */
 
-insert  into `own`(`r_id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`in_time`,`hobby`,`state`) values (10,'张三','男',25,'本科','15674126986','145689@qq.com','人事部','经理','群众','2018-10-25','登山','在职'),(11,'李四','男',23,'大专','13523568974','654789@qq.com','信息部','普通员工','团员','2018-10-26','篮球','在职');
+insert  into `own`(`r_id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`in_time`,`hobby`,`state`) values (10,'张三','男',25,'本科','15674126986','145689@qq.com','人事部','主管','群众','2018-10-25','登山','在职'),(11,'李四','男',23,'大专','13523568974','654789@qq.com','信息部','普通员工','团员','2018-10-26','篮球','在职');
 
 /*Table structure for table `positions` */
 
@@ -178,7 +178,7 @@ CREATE TABLE `trains` (
   `t_dept` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `t_dept` (`t_dept`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `trains` */
 
