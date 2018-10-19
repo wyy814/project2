@@ -5,18 +5,20 @@ import java.sql.Timestamp;
 /**
  * Created by Administrator on 2018/10/12 0012.
  */
-public class Clock {
+public class Card {
     private Integer id;
+    private Integer rId;//员工id
     private Timestamp uTime;//上班时间
     private Timestamp dTime;//下班时间
     private String ynLate;//是否迟到
     private String ynLeave;//是否早退
 
-    public Clock() {
+    public Card() {
     }
 
-    public Clock(Integer id, Timestamp uTime, Timestamp dTime, String ynLate, String ynLeave) {
+    public Card(Integer id, Integer rId, Timestamp uTime, Timestamp dTime, String ynLate, String ynLeave) {
         this.id = id;
+        this.rId = rId;
         this.uTime = uTime;
         this.dTime = dTime;
         this.ynLate = ynLate;
@@ -29,6 +31,14 @@ public class Clock {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getrId() {
+        return rId;
+    }
+
+    public void setrId(Integer rId) {
+        this.rId = rId;
     }
 
     public Timestamp getuTime() {
@@ -65,8 +75,9 @@ public class Clock {
 
     @Override
     public String toString() {
-        return "Clock{" +
+        return "Card{" +
                 "id=" + id +
+                ", rId=" + rId +
                 ", uTime=" + uTime +
                 ", dTime=" + dTime +
                 ", ynLate='" + ynLate + '\'' +

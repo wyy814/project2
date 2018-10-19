@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project2.dao.CardDao">
+
+    <insert id="insertCard" parameterType="Card">
+        INSERT INTO cards(r_id,u_time,yn_late) VALUES (#{rId},#{uTime},#{ynLate})
+    </insert>
+
+    <update id="updateCard" parameterType="Card">
+        UPDATE cards SET d_time=#{dTime},yn_leave=#{ynLeave} WHERE id=#{id}
+    </update>
+
+    <select id="queryCardById" resultType="Card">
+        SELECT * FROM cards WHERE id=#{id}
+    </select>
+
+    <select id="queryCardByRId" resultType="Card">
+        SELECT * FROM cards WHERE r_id=#{rId}
+    </select>
+</mapper>

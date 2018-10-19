@@ -65,12 +65,13 @@ CREATE TABLE `backs` (
 
 insert  into `backs`(`r_id`,`t_time`,`see`,`interview`,`in_time`,`employed`) values (10,'2018-10-17','未查看','按时面试','2018-10-25','未录用'),(11,'2018-10-17','未查看','按时面试','2018-10-26','未录用');
 
-/*Table structure for table `clocks` */
+/*Table structure for table `cards` */
 
-DROP TABLE IF EXISTS `clocks`;
+DROP TABLE IF EXISTS `cards`;
 
-CREATE TABLE `clocks` (
+CREATE TABLE `cards` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `r_id` bigint(20) NOT NULL,
   `u_time` timestamp NULL DEFAULT NULL,
   `d_time` timestamp NULL DEFAULT NULL,
   `yn_late` varchar(20) DEFAULT NULL,
@@ -78,7 +79,7 @@ CREATE TABLE `clocks` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `clocks` */
+/*Data for the table `cards` */
 
 /*Table structure for table `depts` */
 
@@ -139,23 +140,24 @@ insert  into `positions`(`name`,`d_name`,`p_time`) values ('普通员工','信�
 DROP TABLE IF EXISTS `re_and_pu`;
 
 CREATE TABLE `re_and_pu` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL,
   `e_name` varchar(20) NOT NULL,
   `why` varchar(20) DEFAULT NULL,
   `time` date DEFAULT NULL,
   `num` int(11) DEFAULT NULL,
-  `type` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `type` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `re_and_pu` */
+
+insert  into `re_and_pu`(`id`,`e_name`,`why`,`time`,`num`,`type`) values (10,'张三','表现优秀','2018-10-26',200,'赏');
 
 /*Table structure for table `salarys` */
 
 DROP TABLE IF EXISTS `salarys`;
 
 CREATE TABLE `salarys` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL,
   `b_salary` int(11) DEFAULT NULL,
   `p_salary` int(11) DEFAULT NULL,
   `rp_salary` int(11) DEFAULT NULL,

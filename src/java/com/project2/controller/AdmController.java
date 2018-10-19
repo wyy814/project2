@@ -42,6 +42,8 @@ public class AdmController {
     private PositionService positionService;
     @Autowired
     private TrainService trainService;
+    @Autowired
+    private ReAndPuService reAndPuService;
 
     /**
      * 管理员名和密码是否正确
@@ -375,6 +377,42 @@ public class AdmController {
         List<Own> owns = ownService.queryOwnByState("离职");
         model.addAttribute("owns",owns);
         return "adm/leave";
+    }
+
+    /**
+     * 奖惩员工
+     * @param rId
+     * @param model
+     * @return
+     */
+    @RequestMapping("name")
+    public String name(Integer rId,Model model){
+        Own own = ownService.queryOwn(rId);
+        model.addAttribute("own",own);
+        return "adm/up";
+    }
+
+    /**
+     * 增加奖惩
+     * @param reAndPu
+     * @return
+     */
+    @RequestMapping("up")
+    public String up(ReAndPu reAndPu){
+        reAndPuService.insertReAndPu(reAndPu);
+        return "adm/base";
+    }
+
+    /**
+     * 管理员查看奖惩
+     * @param model
+     * @return
+     */
+    @RequestMapping("ud")
+    public String ud(Model model){
+        List<ReAndPu> reAndPus = reAndPuService.queryAllReAndPu();
+        model.addAttribute("reAndPus",reAndPus);
+        return "adm/ud";
     }
 
     @InitBinder

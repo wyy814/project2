@@ -67,7 +67,7 @@
             <c:forEach items="${requestScope.owns}" var="own">
                 <tr>
                     <td>${own.rId}</td>
-                    <td>${own.name}</td>
+                    <td><a href="/adm/name?rId=${own.rId}">${own.name}</a></td>
                     <td>${own.dept}</td>
                     <td>${own.position}</td>
                     <td><a href="/adm/move?rId=${own.rId}">人事调动</a></td>

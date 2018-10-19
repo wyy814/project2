@@ -34,7 +34,7 @@
                 <li><a href="/adm/train">培训管理</a></li>
 
                 <li><a href="/adm/own">员工管理</a></li>
-                <li><a href="/adm/#">奖惩管理</a></li>
+                <li><a href="/adm/ud">奖惩管理</a></li>
                 <li><a href="/adm/#">薪资管理</a></li>
                 <li><a href="/adm/#">工资异议</a></li>
                 <li><a href="/admlogin.jsp">退出</a></li>

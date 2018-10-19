@@ -22,16 +22,42 @@
 
     <script src="/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
     <script src="/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script>
+        $(function () {
+            $("#up").click(function () {
+                var name = $("#s").text();
+                var url="/emp/up";
+                var args={"name":name};
+                $.post(url,args,function (data) {
+                    if(data=="ok"){
+                        alert("打卡成功");
+                    }
+                });
+                return false;
+            });
+            $("#down").click(function () {
+                var name = $("#s").text();
+                var url="/emp/down";
+                var args={"name":name};
+                $.post(url,args,function (data) {
+                    if(data=="ok"){
+                        alert("打卡成功");
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
 </head>
 <body>
-    <span>当前用户：${sessionScope.user.name}</span>
+    当前用户：<span id="s">${sessionScope.user.name}</span>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li><a href="">上班签到</a></li>
-                <li><a href="">下班签到</a></li>
+                <li><a id="up" href="#">上班签到</a></li>
+                <li><a id="down" href="#">下班签到</a></li>
                 <li><a href="#">我的考勤</a></li>
-                <li><a href="#">我的奖惩</a></li>
+                <li><a href="/emp/ud">我的奖惩</a></li>
                 <li><a href="#">我的薪资</a></li>
                 <li><a href="/emp/own">个人信息</a></li>
                 <li><a href="/emp/see">部门职位</a></li>
