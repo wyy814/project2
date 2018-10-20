@@ -45,6 +45,18 @@
                     });
                     return false;
                 }
+            });
+            $(".salary").click(function () {
+                var $td=$(this).parent().parent().children();
+                var rId=$td[0].innerHTML;
+                var url = "/adm/salary";
+                var args={"rId":rId};
+                $.post(url,args,function (data) {
+                    if(data=="ok"){
+                        alert(rId+"的工资发放成功");
+                    }
+                });
+                return false;
             })
         })
     </script>
@@ -71,8 +83,8 @@
                     <td>${own.dept}</td>
                     <td>${own.position}</td>
                     <td><a href="/adm/move?rId=${own.rId}">人事调动</a></td>
-                    <td><a>考勤</a></td>
-                    <td><a>工资发放</a></td>
+                    <td><a href="/adm/card">考勤</a></td>
+                    <td><a class="salary" href="#">工资发放</a></td>
                     <td><a class="delete" href="#">开除</a></td>
                 </tr>
             </c:forEach>

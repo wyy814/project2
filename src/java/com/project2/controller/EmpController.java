@@ -18,6 +18,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -38,6 +39,8 @@ public class EmpController {
     private ReAndPuService reAndPuService;
     @Autowired
     private CardService cardService;
+    @Autowired
+    private SalaryService salaryService;
 
     /**
      * 显示个人信息
@@ -95,6 +98,7 @@ public class EmpController {
     /**
      * 查看奖惩
      * @param session
+     * @param model
      * @return
      */
     @RequestMapping("ud")
@@ -108,56 +112,111 @@ public class EmpController {
 
     /**
      * 上班打卡
-     * @param name
+     * @param session
      * @return
      * @throws ParseException
      */
     @RequestMapping("up")
-    @ResponseBody
-    public String up(String name) throws ParseException {
-        UserResume userResume = userResumeService.queryResumeByUName(name);
+    public String up(HttpSession session) throws ParseException {
+        User user = (User) session.getAttribute("user");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);//获取年份
+        int month=cal.get(Calendar.MONTH)+1;//获取月份
+        int day=cal.get(Calendar.DATE);//获取日
+        UserResume userResume = userResumeService.queryResumeByUName(user.getName());
         Card card = new Card();
         card.setrId(userResume.getId());
         card.setuTime(timestamp);
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-        if (timestamp.compareTo(format.parse("09:00:00"))>0){
-            System.out.println(format.parse("09:00:00"));
-            System.out.println(timestamp.compareTo(format.parse("09:00:00")));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (timestamp.compareTo(format.parse(year+"-"+month+"-"+day+" "+"09:00:00"))<0){
             card.setYnLate("否");
             cardService.insertCard(card);
         }else {
             card.setYnLate("迟到");
             cardService.insertCard(card);
         }
-        return "ok";
+        return "emp/base";
     }
 
     /**
      * 下班打卡
-     * @param name
+     * @param session
      * @return
      * @throws ParseException
      */
-
     @RequestMapping("down")
-    @ResponseBody
-    public String down(String name) throws ParseException {
-        UserResume userResume = userResumeService.queryResumeByUName(name);
+    public String down(HttpSession session) throws ParseException {
+        User user = (User) session.getAttribute("user");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Card card = new Card();
-        card.setrId(userResume.getId());
-        card.setuTime(timestamp);
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-        if (timestamp.compareTo(format.parse("18:00:00"))>0){
-            System.out.println(format.parse("18:00:00"));
-            System.out.println(timestamp.compareTo(format.parse("18:00:00")));
-            card.setYnLate("否");
-            cardService.insertCard(card);
-        }else {
-            card.setYnLate("早退");
-            cardService.insertCard(card);
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);//获取年份
+        int month=cal.get(Calendar.MONTH)+1;//获取月份
+        int day=cal.get(Calendar.DATE);//获取日
+        UserResume userResume = userResumeService.queryResumeByUName(user.getName());
+        List<Card> cards = cardService.queryCardByRId(userResume.getId());
+        int index = 0;
+        if (cards.size()!=0){
+            for (int i=0;i<cards.size();i++){
+                while (cards.get(i).getuTime().toString().substring(0,10).equals(year+"-"+month+"-"+day)){
+                    index = cards.get(i).getId();
+                    break;
+                }
+            }
         }
+        Card card = cardService.queryCardById(index);
+        card.setdTime(timestamp);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (timestamp.compareTo(format.parse(year+"-"+month+"-"+day+" "+"17:00:00"))<0){
+            card.setYnLeave("早退");
+            cardService.updateCard(card);
+        }else {
+            card.setYnLeave("否");
+            cardService.updateCard(card);
+        }
+        return "emp/base";
+    }
+
+    /**
+     * 员工查看考勤
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("card")
+    public String card(HttpSession session,Model model){
+        User user = (User) session.getAttribute("user");
+        UserResume userResume = userResumeService.queryResumeByUName(user.getName());
+        List<Card> cards = cardService.queryCardByRId(userResume.getId());
+        model.addAttribute("cards",cards);
+        return "emp/card";
+    }
+
+    /**
+     * 员工查看薪资
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("salary")
+    public String salary(HttpSession session,Model model){
+        User user = (User) session.getAttribute("user");
+        UserResume userResume = userResumeService.queryResumeByUName(user.getName());
+        Salary salary = salaryService.querySalaryByRId(userResume.getId());
+        model.addAttribute("salary",salary);
+        return "emp/salary";
+    }
+
+    /**
+     * 工资异议
+     * @param id
+     * @param rec
+     * @return
+     */
+    @RequestMapping("wrong")
+    @ResponseBody
+    public String wrong(Integer id,String rec){
+        salaryService.updateSalary(id,rec);
         return "ok";
     }
 

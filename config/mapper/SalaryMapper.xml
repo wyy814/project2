@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project2.dao.SalaryDao">
+
+    <insert id="insertSalary" parameterType="Salary">
+        INSERT INTO
+            salarys(id,b_salary,p_salary,rp_salary,s_salary,time)
+        VALUES
+            (#{id},#{bSalary},#{pSalary},#{rpSalary},#{sSalary},#{time})
+    </insert>
+
+    <update id="updateSalary">
+        UPDATE salarys SET rec=#{rec} WHERE id=#{id}
+    </update>
+
+    <select id="querySalaryByRId" resultType="Salary">
+        SELECT * FROM salarys WHERE id=#{id}
+    </select>
+
+    <select id="queryAllSalary" resultType="Salary">
+        SELECT * FROM salarys
+    </select>
+</mapper>

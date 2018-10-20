@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,6 +45,12 @@ public class AdmController {
     private TrainService trainService;
     @Autowired
     private ReAndPuService reAndPuService;
+    @Autowired
+    private CardService cardService;
+    @Autowired
+    private GradeService gradeService;
+    @Autowired
+    private SalaryService salaryService;
 
     /**
      * 管理员名和密码是否正确
@@ -413,6 +420,134 @@ public class AdmController {
         List<ReAndPu> reAndPus = reAndPuService.queryAllReAndPu();
         model.addAttribute("reAndPus",reAndPus);
         return "adm/ud";
+    }
+
+    /**
+     * 管理员查看员工考勤
+     * @param rId
+     * @param model
+     * @return
+     */
+    @RequestMapping("card")
+    public String card(Integer rId,Model model){
+        List<Card> cards = cardService.queryCardByRId(rId);
+        model.addAttribute("cards",cards);
+        return "adm/card";
+    }
+
+    /**
+     * 绩效
+     * @param model
+     * @return
+     */
+    @RequestMapping("grade")
+    public String grade(Model model){
+        List<Own> owns = ownService.queryOwnByState("在职");
+        model.addAttribute("owns",owns);
+        return "adm/grade";
+    }
+
+    /**
+     * 新增绩效
+     * @param rId
+     * @param grade
+     * @return
+     */
+    @RequestMapping("in")
+    @ResponseBody
+    public String in(Integer rId,Integer grade){
+        Own own = ownService.queryOwn(rId);
+        Grade grade1 = new Grade();
+        grade1.setrId(own.getrId());
+        grade1.setName(own.getName());
+        grade1.setDept(own.getDept());
+        grade1.setPosition(own.getPosition());
+        grade1.setGrade(grade);
+        gradeService.insertGrade(grade1);
+        return "ok";
+    }
+
+    /**
+     * 发放工资
+     * @param rId
+     * @return
+     */
+    @RequestMapping("salary")
+    @ResponseBody
+    public String salary(Integer rId){
+        List<ReAndPu> reAndPus = reAndPuService.queryReAndPuById(rId);
+        int num = 0;
+        if (reAndPus.size()!=0){
+            for (int i=0;i<reAndPus.size();i++){
+                num += reAndPus.get(i).getNum();
+            }
+        }
+        Grade grade = gradeService.queryGradeByRId(rId);
+        List<Card> cards = cardService.queryCardByRId(rId);
+        int index = 0;
+        if (cards.size()!=0){
+            int i=0;
+            while (i<cards.size()){
+                if (cards.get(i).getYnLate().equals("迟到")&&cards.get(i).getYnLeave().equals("早退")){
+                    index = index+8;
+                }else if (cards.get(i).getYnLate().equals("迟到")||cards.get(i).getYnLeave().equals("早退")){
+                    index = index+1;
+                }
+                i++;
+            }
+        }
+        Salary salary = new Salary();
+        salary.setId(rId);
+        salary.setRpSalary(num);
+        salary.setpSalary(grade.getGrade());
+        salary.setsSalary(-1500);//社保
+        salary.setbSalary(cards.size()*800-index*100);
+        salary.setTime(new Date(System.currentTimeMillis()));
+        salaryService.insertSalary(salary);
+        return "ok";
+    }
+
+    /**
+     * 查看工资详情
+     * @param model
+     * @return
+     */
+    @RequestMapping("money")
+    public String money(Model model){
+        List<Salary> salaries = salaryService.queryAllSalary();
+        model.addAttribute("salaries",salaries);
+        return "adm/salary";
+    }
+
+    /**
+     * 工资异议
+     * @param model
+     * @return
+     */
+    @RequestMapping("wrong")
+    public String wrong(Model model){
+        List<Salary> salaries = new ArrayList<>();
+        List<Salary> salaries1 = salaryService.queryAllSalary();
+        int i = 0;
+        while (i<salaries1.size()){
+            if (!salaries1.get(i).getRec().equals("无")){
+                salaries.add(salaries1.get(i));
+            }
+            i++;
+        }
+        model.addAttribute("salaries",salaries);
+        return "adm/rec";
+    }
+
+    /**
+     * 驳回工资异议
+     * @param id
+     * @return
+     */
+    @RequestMapping("back")
+    public String back(Integer id){
+        salaryService.updateSalary(id,"无");
+        return "adm/base";
     }
 
     @InitBinder

@@ -35,8 +35,9 @@
 
                 <li><a href="/adm/own">员工管理</a></li>
                 <li><a href="/adm/ud">奖惩管理</a></li>
-                <li><a href="/adm/#">薪资管理</a></li>
-                <li><a href="/adm/#">工资异议</a></li>
+                <li><a href="/adm/grade">绩效管理</a></li>
+                <li><a href="/adm/money">薪资管理</a></li>
+                <li><a href="/adm/wrong">工资异议</a></li>
                 <li><a href="/admlogin.jsp">退出</a></li>
             </ul>
         </div>

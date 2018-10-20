@@ -77,9 +77,11 @@ CREATE TABLE `cards` (
   `yn_late` varchar(20) DEFAULT NULL,
   `yn_leave` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cards` */
+
+insert  into `cards`(`id`,`r_id`,`u_time`,`d_time`,`yn_late`,`yn_leave`) values (11,10,'2018-10-19 13:59:57','2018-10-19 14:00:10','迟到','早退');
 
 /*Table structure for table `depts` */
 
@@ -93,7 +95,23 @@ CREATE TABLE `depts` (
 
 /*Data for the table `depts` */
 
-insert  into `depts`(`name`,`d_time`) values ('人事部','2018-10-03 15:47:46'),('信息部','2018-10-04 15:48:17'),('销售部','2018-10-17 15:21:22');
+insert  into `depts`(`name`,`d_time`) values ('人事部','2018-10-03 15:47:46'),('信息部','2018-10-04 15:48:17'),('后勤部','2018-10-19 17:53:09'),('销售部','2018-10-17 15:21:22');
+
+/*Table structure for table `grades` */
+
+DROP TABLE IF EXISTS `grades`;
+
+CREATE TABLE `grades` (
+  `r_id` bigint(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `dept` varchar(20) NOT NULL,
+  `position` varchar(20) NOT NULL,
+  `grade` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `grades` */
+
+insert  into `grades`(`r_id`,`name`,`dept`,`position`,`grade`) values (10,'张三','人事部','主管',2000),(11,'李四','信息部','普通员工',2000);
 
 /*Table structure for table `own` */
 
@@ -163,11 +181,13 @@ CREATE TABLE `salarys` (
   `rp_salary` int(11) DEFAULT NULL,
   `s_salary` int(11) DEFAULT NULL,
   `time` date DEFAULT NULL,
-  `rec` varchar(100) DEFAULT NULL,
+  `rec` varchar(100) DEFAULT '无',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `salarys` */
+
+insert  into `salarys`(`id`,`b_salary`,`p_salary`,`rp_salary`,`s_salary`,`time`,`rec`) values (10,0,2000,200,-1500,'2018-10-19','错误');
 
 /*Table structure for table `trains` */
 
