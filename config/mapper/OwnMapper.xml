@@ -40,8 +40,4 @@
     <select id="queryOwnByPosition" resultType="Own">
         SELECT * FROM own WHERE dept=#{dept} AND position=#{position}
     </select>
-
-    <select id="queryAllOwns" resultType="Own">
-        SELECT * FROM own
-    </select>
 </mapper>

@@ -17,5 +17,4 @@ public interface OwnDao {
     List<Own> queryOwnByDept(String dept);
     List<Own> queryOwnByState(String state);
     List<Own> queryOwnByPosition(@Param("dept") String dept, @Param("position") String position);
-    List<Own> queryAllOwns();
 }

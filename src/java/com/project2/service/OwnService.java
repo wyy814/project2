@@ -16,5 +16,4 @@ public interface OwnService {
     List<Own> queryOwnByState(String state);
     List<Own> queryOwnByDept(String dept);
     List<Own> queryOwnByPosition(String dept,String position);
-    List<Own> queryAllOwns();
 }

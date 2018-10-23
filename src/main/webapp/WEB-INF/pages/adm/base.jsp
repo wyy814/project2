@@ -32,7 +32,7 @@
                 <li><a href="/adm/show2">面试</a></li>
                 <li><a href="/adm/dept">部门职位</a></li>
                 <li><a href="/adm/train">培训管理</a></li>
-
+                <li><a href="/adm/trainByDept">培训</a></li>
                 <li><a href="/adm/own">员工管理</a></li>
                 <li><a href="/adm/ud">奖惩管理</a></li>
                 <li><a href="/adm/grade">绩效管理</a></li>

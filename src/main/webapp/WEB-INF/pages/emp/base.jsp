@@ -25,25 +25,47 @@
     <script>
         $(function () {
             $("#up").click(function () {
-                alert("打卡成功");
+                var name = $("#name").text();
+                var url = "/emp/up";
+                var args = {"name":name};
+                $.post(url,args,function (data) {
+                    if (data=="ok"){
+                        alert("打卡成功");
+                    }
+                    if (data=="no"){
+                        alert("今天已经打过卡了");
+                    }
+                });
+                return false;
             });
             $("#down").click(function () {
-                alert("打卡成功");
+                var name = $("#name").text();
+                var url = "/emp/down";
+                var args = {"name":name};
+                $.post(url,args,function (data) {
+                    if (data=="ok"){
+                        alert("打卡成功");
+                    }
+                    if (data=="no"){
+                        alert("今天已经打过卡了");
+                    }
+                });
+                return false;
             })
         })
     </script>
 </head>
 <body>
-    <span>当前用户：${sessionScope.user.name}</span>
+    当前用户：<span id="name">${sessionScope.user.name}</span>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li><a id="up" href="/emp/up">上班签到</a></li>
-                <li><a id="down" href="/emp/down">下班签到</a></li>
-                <li><a href="/emp/card">我的考勤</a></li>
-                <li><a href="/emp/ud">我的奖惩</a></li>
-                <li><a href="/emp/salary">我的薪资</a></li>
-                <li><a href="/emp/own">个人信息</a></li>
+                <li><a id="up" href="#">上班签到</a></li>
+                <li><a id="down" href="#">下班签到</a></li>
+                <li><a href="/emp/card?name=${sessionScope.user.name}">我的考勤</a></li>
+                <li><a href="/emp/ud?name=${sessionScope.user.name}">我的奖惩</a></li>
+                <li><a href="/emp/salary?name=${sessionScope.user.name}">我的薪资</a></li>
+                <li><a href="/emp/own?name=${sessionScope.user.name}">个人信息</a></li>
                 <li><a href="/emp/see">部门职位</a></li>
                 <li><a href="/login.jsp">退出</a></li>
             </ul>

@@ -311,6 +311,31 @@ public class AdmController {
     }
 
     /**
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("trainByDept")
+    public String trainByDept(Model model){
+        List<Dept> depts = deptService.queryAllDept();
+        model.addAttribute("depts",depts);
+        return "adm/trainByDept";
+    }
+
+    /**
+     * 根据部门查培训
+     * @param name
+     * @param model
+     * @return
+     */
+    @RequestMapping("deptTrain")
+    public String deptTrain(String name,Model model){
+        List<Train> trains = trainService.queryTrain(name);
+        model.addAttribute("trains",trains);
+        return "adm/deptTrain";
+    }
+
+    /**
      * jsp--controller
      * @return
      */
@@ -490,7 +515,7 @@ public class AdmController {
         if (cards.size()!=0){
             int i=0;
             while (i<cards.size()){
-                if (cards.get(i).getYnLate().equals("迟到")&&cards.get(i).getYnLeave().equals("早退")){
+                if (cards.get(i).getYnLate().equals("旷工")||cards.get(i).getYnLeave().equals("旷工")){
                     index = index+8;
                 }else if (cards.get(i).getYnLate().equals("迟到")||cards.get(i).getYnLeave().equals("早退")){
                     index = index+1;
@@ -502,7 +527,7 @@ public class AdmController {
         salary.setId(rId);
         salary.setRpSalary(num);
         salary.setpSalary(grade.getGrade());
-        salary.setsSalary(-1500);//社保
+        salary.setsSalary(-500);//社保
         salary.setbSalary(cards.size()*800-index*100);
         salary.setTime(new Date(System.currentTimeMillis()));
         salaryService.insertSalary(salary);
