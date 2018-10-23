@@ -22,7 +22,7 @@
                 var $td = $(this).parent().parent().children();
                 var rId = $td[0].innerHTML;
                 var name = $td[1].innerHTML;
-                var grade = $(".grade").val();
+                var grade = window.prompt("请输入该员工的绩效奖金");
                 var url = "/adm/in";
                 var args = {"rId":rId,"grade":grade};
                 $.post(url,args,function (date) {
@@ -37,7 +37,6 @@
 </head>
 <body>
     <jsp:include page="base.jsp"/>
-    <form>
         <table id="table" border="1" cellspacing="0">
             <tr>
                 <td>编号</td>
@@ -54,12 +53,10 @@
                         <td>${own.name}</td>
                         <td>${own.dept}</td>
                         <td>${own.position}</td>
-                        <td><input class="grade" type="number" name="grade" placeholder="新增当月绩效"></td>
-                        <td><input class="in" type="submit" value="确认"></td>
+                        <td><a class="in" href="#">新增当月绩效</a></td>
                     </tr>
                 </c:forEach>
             </c:if>
         </table>
-    </form>
 </body>
 </html>

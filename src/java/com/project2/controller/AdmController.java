@@ -125,6 +125,7 @@ public class AdmController {
     @RequestMapping("time")
     public String time(Integer rId,Date inTime){
         Apply apply = applyService.queryApplyByRId(rId);
+        applyService.updateApplyInState(apply.getId());
         Back back = new Back();
         back.setrId(rId);
         back.settTime(apply.getdTime());
@@ -164,6 +165,7 @@ public class AdmController {
      */
     @RequestMapping("employed")
     public String employed(Integer rId){
+        backService.updateBackIn(rId);
         UserResume userResume = userResumeService.queryResume(rId);
         userService.updateUser(userResume.getuName());
         Own own = new Own();

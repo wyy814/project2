@@ -83,7 +83,7 @@
                     <td>${own.dept}</td>
                     <td>${own.position}</td>
                     <td><a href="/adm/move?rId=${own.rId}">人事调动</a></td>
-                    <td><a href="/adm/card">考勤</a></td>
+                    <td><a href="/adm/card?rId=${own.rId}">考勤</a></td>
                     <td><a class="salary" href="#">工资发放</a></td>
                     <td><a class="delete" href="#">开除</a></td>
                 </tr>

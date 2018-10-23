@@ -9,8 +9,7 @@ import java.util.List;
  */
 public interface BackService {
     void insertBack(Back back);
-    void updateBackSee(String uName);
-    void updateBackIn(String uName);
+    void updateBackIn(Integer rId);
     Back queryBackByRId(Integer rId);
     List<Back> queryAllBack();
 }

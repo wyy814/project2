@@ -158,9 +158,16 @@ public class EmpController {
         int index = 0;
         if (cards.size()!=0){
             for (int i=0;i<cards.size();i++){
-                while (cards.get(i).getuTime().toString().substring(0,10).equals(year+"-"+month+"-"+day)){
-                    index = cards.get(i).getId();
-                    break;
+                if (day<10){
+                    while (cards.get(i).getuTime().toString().substring(0,10).equals(year+"-"+month+"-"+"0"+day)){
+                        index = cards.get(i).getId();
+                        break;
+                    }
+                }else {
+                    while (cards.get(i).getuTime().toString().substring(0,10).equals(year+"-"+month+"-"+day)){
+                        index = cards.get(i).getId();
+                        break;
+                    }
                 }
             }
         }

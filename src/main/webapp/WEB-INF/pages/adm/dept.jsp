@@ -22,7 +22,7 @@
             $(".deleteDept").click(function () {
                 var $td = $(this).parent().parent().children();
                 var dept = $td[0].innerHTML;
-                var flag=confirm("确定要删除"+name+"吗？");
+                var flag=confirm("确定要删除"+dept+"吗？");
                 if(!flag){
                     return false;
                 }else {

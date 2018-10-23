@@ -22,8 +22,6 @@
     <table id="table" border="1" cellspacing="0">
         <tr>
             <td>投递时间</td>
-            <td>是否查看</td>
-            <td>是否面试</td>
             <td>面试时间</td>
             <td>是否录用</td>
         </tr>
@@ -31,8 +29,6 @@
         <c:if test="${!empty requestScope.back}">
             <tr>
                 <td>${requestScope.back.tTime}</td>
-                <td>${requestScope.back.see}</td>
-                <td>${requestScope.back.interview}</td>
                 <td>${requestScope.back.inTime}</td>
                 <td>${requestScope.back.employed}</td>
             </tr>

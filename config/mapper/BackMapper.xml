@@ -6,12 +6,8 @@
         INSERT INTO backs(r_id,t_time,in_time) VALUES (#{rId},#{tTime},#{inTime})
     </insert>
 
-    <update id="updateBackSee">
-        UPDATE backs SET see='已查看' WHERE r_id=#{rId}
-    </update>
-
     <update id="updateBackIn">
-        UPDATE backs SET interview='已录取' WHERE r_id=#{rId}
+        UPDATE backs SET employed='已录取' WHERE r_id=#{rId}
     </update>
 
     <select id="queryBackByRId" resultType="Back">

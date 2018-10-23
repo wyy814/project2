@@ -42,11 +42,11 @@ CREATE TABLE `applys` (
   `c_state` varchar(20) NOT NULL DEFAULT '未查看',
   `in_state` varchar(20) NOT NULL DEFAULT '未面试',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 /*Data for the table `applys` */
 
-insert  into `applys`(`id`,`r_id`,`a_name`,`d_time`,`c_state`,`in_state`) values (8,10,'张三','2018-10-17','已查看','未面试'),(9,11,'李四','2018-10-17','已查看','未面试');
+insert  into `applys`(`id`,`r_id`,`a_name`,`d_time`,`c_state`,`in_state`) values (17,19,'张三','2018-11-01','已查看','已面试'),(18,20,'李四','2018-11-02','已查看','已面试'),(19,21,'李四','2018-11-03','已查看','已面试');
 
 /*Table structure for table `backs` */
 
@@ -55,15 +55,13 @@ DROP TABLE IF EXISTS `backs`;
 CREATE TABLE `backs` (
   `r_id` bigint(20) DEFAULT NULL,
   `t_time` date DEFAULT NULL,
-  `see` varchar(20) NOT NULL DEFAULT '未查看',
-  `interview` varchar(20) NOT NULL DEFAULT '按时面试',
   `in_time` date DEFAULT NULL,
   `employed` varchar(20) NOT NULL DEFAULT '未录用'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `backs` */
 
-insert  into `backs`(`r_id`,`t_time`,`see`,`interview`,`in_time`,`employed`) values (10,'2018-10-17','未查看','按时面试','2018-10-25','未录用'),(11,'2018-10-17','未查看','按时面试','2018-10-26','未录用');
+insert  into `backs`(`r_id`,`t_time`,`in_time`,`employed`) values (19,'2018-11-01','2018-11-01','已录取'),(20,'2018-11-02','2018-11-02','已录取'),(21,'2018-11-03','2018-11-03','已录取');
 
 /*Table structure for table `cards` */
 
@@ -77,11 +75,11 @@ CREATE TABLE `cards` (
   `yn_late` varchar(20) DEFAULT NULL,
   `yn_leave` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cards` */
 
-insert  into `cards`(`id`,`r_id`,`u_time`,`d_time`,`yn_late`,`yn_leave`) values (11,10,'2018-10-19 13:59:57','2018-10-19 14:00:10','迟到','早退');
+insert  into `cards`(`id`,`r_id`,`u_time`,`d_time`,`yn_late`,`yn_leave`) values (15,19,'2018-11-01 17:50:17','2018-11-01 18:25:14','迟到','否'),(16,19,'2018-11-02 08:33:30',NULL,'否',NULL),(17,20,'2018-11-02 08:38:09','2018-11-02 17:45:03','否','否'),(18,21,'2018-11-03 10:00:41','2018-11-03 10:00:51','迟到','早退'),(19,21,'2018-11-02 08:14:26','2018-11-02 08:14:29','否','早退'),(20,21,'2018-11-01 08:15:19','2018-11-01 08:15:22','否','早退');
 
 /*Table structure for table `depts` */
 
@@ -95,7 +93,7 @@ CREATE TABLE `depts` (
 
 /*Data for the table `depts` */
 
-insert  into `depts`(`name`,`d_time`) values ('人事部','2018-10-03 15:47:46'),('信息部','2018-10-04 15:48:17'),('后勤部','2018-10-19 17:53:09'),('销售部','2018-10-17 15:21:22');
+insert  into `depts`(`name`,`d_time`) values ('IT部','2018-10-20 10:49:52'),('人事部','2018-10-20 10:51:29');
 
 /*Table structure for table `grades` */
 
@@ -111,7 +109,7 @@ CREATE TABLE `grades` (
 
 /*Data for the table `grades` */
 
-insert  into `grades`(`r_id`,`name`,`dept`,`position`,`grade`) values (10,'张三','人事部','主管',2000),(11,'李四','信息部','普通员工',2000);
+insert  into `grades`(`r_id`,`name`,`dept`,`position`,`grade`) values (21,'李四','人事部','顾问',2000);
 
 /*Table structure for table `own` */
 
@@ -136,7 +134,7 @@ CREATE TABLE `own` (
 
 /*Data for the table `own` */
 
-insert  into `own`(`r_id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`in_time`,`hobby`,`state`) values (10,'张三','男',25,'本科','15674126986','145689@qq.com','人事部','主管','群众','2018-10-25','登山','在职'),(11,'李四','男',23,'大专','13523568974','654789@qq.com','信息部','普通员工','团员','2018-10-26','篮球','在职');
+insert  into `own`(`r_id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`in_time`,`hobby`,`state`) values (19,'张三','男',26,'本科','15689562347','156@qq.com','IT部','Java开发','群众','2018-11-01','篮球','在职'),(20,'李四','男',25,'大专','45896325','466@qq.com','IT部','Java开发','团员','2018-11-02','篮球','在职'),(21,'李四','男',26,'本科','12589756234','15689@qq.com','人事部','顾问','群众','2018-11-03','读书','在职');
 
 /*Table structure for table `positions` */
 
@@ -151,7 +149,7 @@ CREATE TABLE `positions` (
 
 /*Data for the table `positions` */
 
-insert  into `positions`(`name`,`d_name`,`p_time`) values ('普通员工','信息部','2018-10-17 15:10:34'),('主管','人事部','2018-10-17 15:10:40'),('助理','人事部','2018-10-17 15:10:44'),('经理','人事部','2018-10-17 15:10:49'),('经理','信息部','2018-10-17 15:10:53'),('顾问','销售部','2018-10-17 15:21:23');
+insert  into `positions`(`name`,`d_name`,`p_time`) values ('Java开发','IT部','2018-10-20 10:49:53'),('Java测试','IT部','2018-10-20 10:50:17'),('经理','人事部','2018-10-20 10:51:29'),('顾问','人事部','2018-10-20 10:52:51');
 
 /*Table structure for table `re_and_pu` */
 
@@ -168,7 +166,7 @@ CREATE TABLE `re_and_pu` (
 
 /*Data for the table `re_and_pu` */
 
-insert  into `re_and_pu`(`id`,`e_name`,`why`,`time`,`num`,`type`) values (10,'张三','表现优秀','2018-10-26',200,'赏');
+insert  into `re_and_pu`(`id`,`e_name`,`why`,`time`,`num`,`type`) values (21,'李四','表现优秀','2018-11-01',500,'赏');
 
 /*Table structure for table `salarys` */
 
@@ -187,7 +185,7 @@ CREATE TABLE `salarys` (
 
 /*Data for the table `salarys` */
 
-insert  into `salarys`(`id`,`b_salary`,`p_salary`,`rp_salary`,`s_salary`,`time`,`rec`) values (10,0,2000,200,-1500,'2018-10-19','错误');
+insert  into `salarys`(`id`,`b_salary`,`p_salary`,`rp_salary`,`s_salary`,`time`,`rec`) values (21,1400,2000,500,-1500,'2018-11-01','无');
 
 /*Table structure for table `trains` */
 
@@ -226,11 +224,11 @@ CREATE TABLE `user_resumes` (
   `u_name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user_resumes` */
 
-insert  into `user_resumes`(`id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`on_job`,`work_exp`,`salary`,`hobby`,`u_name`) values (10,'张三','男',25,'本科','15674126985','145689@qq.com','人事部','经理','群众','经理','3年','8000-10000','登山','aaa'),(11,'李四','男',23,'大专','13523568974','654789@qq.com','信息部','普通员工','团员','java开发','2年','8000-10000','篮球','bbb');
+insert  into `user_resumes`(`id`,`name`,`sex`,`age`,`edu_bg`,`phone`,`email`,`dept`,`position`,`political`,`on_job`,`work_exp`,`salary`,`hobby`,`u_name`) values (19,'张三','男',26,'本科','15689562347','156@qq.com','IT部','Java开发','群众','java开发','2年','6000-8000','篮球','a'),(20,'李四','男',25,'大专','45896325','466@qq.com','IT部','Java测试','团员','java测试','2年','6000-8000','篮球','b'),(21,'李四','男',26,'本科','12589756234','15689@qq.com','人事部','顾问','群众','助理','3年','6000-8000','读书','c');
 
 /*Table structure for table `users` */
 
@@ -245,7 +243,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`name`,`password`,`type`) values ('aaa','aaa',1),('bbb','bbb',1);
+insert  into `users`(`name`,`password`,`type`) values ('a','a',1),('b','b',1),('c','c',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

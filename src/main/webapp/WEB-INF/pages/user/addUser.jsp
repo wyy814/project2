@@ -127,7 +127,7 @@
                             <option>4000-6000</option>
                             <option>6000-8000</option>
                             <option>8000-10000</option>
-                            <option>其它</option>
+                            <option>面议</option>
                         </select>
                     </td>
                     <td>兴趣爱好</td>
@@ -135,7 +135,7 @@
                 </tr>
 
                 <tr>
-                    <td class="t2" colspan="4"><input type="submit" value="保存"></td>
+                    <td class="t2" colspan="4"><input type="submit" value="投递"></td>
                 </tr>
             </table>
         </form>
@@ -279,28 +279,28 @@
                                 <option selected="selected">4000-6000</option>
                                 <option>6000-8000</option>
                                 <option>8000-10000</option>
-                                <option>其它</option>
+                                <option>面议</option>
                             </c:if>
 
                             <c:if test="${requestScope.userResume.salary=='6000-8000'}">
                                 <option>4000-6000</option>
                                 <option selected="selected">6000-8000</option>
                                 <option>8000-10000</option>
-                                <option>其它</option>
+                                <option>面议</option>
                             </c:if>
 
                             <c:if test="${requestScope.userResume.salary=='8000-10000'}">
                                 <option>4000-6000</option>
                                 <option>6000-8000</option>
                                 <option selected="selected">8000-10000</option>
-                                <option>其它</option>
+                                <option>面议</option>
                             </c:if>
 
-                            <c:if test="${requestScope.userResume.salary=='其它'}">
+                            <c:if test="${requestScope.userResume.salary=='面议'}">
                                 <option>4000-6000</option>
                                 <option>6000-8000</option>
                                 <option>8000-10000</option>
-                                <option selected="selected">其它</option>
+                                <option selected="selected">面议</option>
                             </c:if>
                         </select>
                     </td>
@@ -309,7 +309,7 @@
                 </tr>
 
                 <tr>
-                    <td class="t2" colspan="4"><input type="submit" value="保存"></td>
+                    <td class="t2" colspan="4"><input type="submit" value="投递"></td>
                 </tr>
             </table>
         </form>

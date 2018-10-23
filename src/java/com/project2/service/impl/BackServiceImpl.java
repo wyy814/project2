@@ -22,13 +22,8 @@ public class BackServiceImpl implements BackService{
     }
 
     @Override
-    public void updateBackSee(String uName) {
-        backDao.updateBackSee(uName);
-    }
-
-    @Override
-    public void updateBackIn(String uName) {
-        backDao.updateBackIn(uName);
+    public void updateBackIn(Integer rId) {
+        backDao.updateBackIn(rId);
     }
 
     @Override

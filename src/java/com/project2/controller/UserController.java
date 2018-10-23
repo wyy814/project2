@@ -231,13 +231,8 @@ public class UserController {
     public String back(HttpSession session,Model model){
         User user = (User) session.getAttribute("user");
         UserResume userResume = userResumeService.queryResumeByUName(user.getName());
-        if (userResume!=null){
-            Back back = backService.queryBackByRId(userResume.getId());
-            if (back!=null){
-                backService.updateBackSee(user.getName());
-                model.addAttribute("back",back);
-            }
-        }
+        Back back = backService.queryBackByRId(userResume.getId());
+        model.addAttribute("back",back);
         return "user/back";
     }
 }
